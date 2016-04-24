@@ -1,0 +1,65 @@
+#gs_banner .gs_ban{width:100%;height:auto}
+#gs_rank{margin-top:-4px;width:100%;height:80px;background:url(../img/gs_ban3.gif) no-repeat;background-size:100% 80px;overflow:auto;text-align:right}
+#gs_rank .rank{float:right;width:50%;position:relative;top:42px}
+#gs_rank .rank img{width:13%;position:relative;height:34px;float:left}
+#gs_intro{width:100%;background:#fff;margin-top:-3px;padding-top:15px;padding-bottom:17px}
+#gs_intro p{color:#949495;font-size:15px;line-height:25px;margin-left:5%}
+#gs_time{width:100%;height:154px;background:#ea5550}
+#gs_time .gs_title{text-align:center;color:#FFF;font-size:18px;font-weight:700;padding-top:16px;margin-bottom:10px}
+#gs_time .gs_time_con{width:100%;height:97px;text-align:center;background:#ea5550 url(../img/gs_tm.png) no-repeat;background-size:100% 97px}
+#gs_time .gs_result{width:15%;margin-left:4.5%;height:58px;float:left;background:url(../img/gs_imgm1.gif) no-repeat;background-size:100% 58px;margin-top:20px}
+#gs_time .gs_result .gs_day{top:11px;left:-4%;position:relative;display:block;color:#949495}
+#gs_time .gs_result .gs_image{height:17px;margin-top:22px;left:-4%;position:relative}
+#gs_score{width:100%;background:0;border-top:2px solid #c9caca;border-bottom:2px solid #c9caca}
+#gs_score .gs_tle p{display:inline-block;line-height:54px;font-size:22px;font-weight:700;margin-left:3%}
+#gs_score .gs_tle p span{color:#949495;font-size:14px;font-weight:400}
+#gs_score .gs_tle .gs_sr_bg{right:2%;position:absolute;width:97px;display:inline-block;background:url(../img/gs01.gif) no-repeat right;background-size:contain}
+#gs_score .gs_tle .gs_sr_bg p{cursor:pointer;font-size:15px;color:#666464;margin-left:33%;font-weight:400}
+#gs_content{width:100%;color:#949495;font-size:16px;background:#f7f8f8}
+#gs_content ul{display:block;overflow:auto}
+
+#gs_content ul .topic{padding-left:4%;border-bottom:1px dashed #b5b5b6;line-height:60px;overflow:auto;word-break: break-word;}
+#gs_content ul .li{width:100%;overflow:auto;border-bottom:1px dashed #b5b5b6;}
+
+#gs_content ul .li p{line-height:20px;padding-top:5px;padding-right:5px;padding-bottom:15px;word-break: break-word;}
+
+#gs_content ul .float,.floatLine,.gs_pad{line-height:10px}
+#gs_content .topic .td{width:95%;float:left;line-height:20px;padding-bottom:8px;padding-top:5px}
+#gs_content .float{width:50%;padding-left:10%;float:left}
+#gs_content .floatLine{width:95%;margin-left:5%;}
+#gs_content .gs_num{font-size:18px;color:#727171;}
+#gs_content .gs_pad{overflow:auto}
+#gs_content .answer0{right:1%;position:absolute}
+#gs_content .answer{color:#e8380d}
+#gs_content .gs_border{border-bottom:0}.gs_foot{width:100%;height:70px;margin-top:-3px}
+#gs_button{width:100%;height:78px;text-align:center}
+#gs_button .gs_btn{cursor:pointer;width:86%;margin-top:18px;height:37px;border:1px solid #949494;border-radius:5px;background:-webkit-linear-gradient(top,#fcfcfc,#d8d9d9);background: -moz-linear-gradient(top,#fcfcfc,#d8d9d9);color:#666464;font-size:20px}
+#gs_button .gs_btnSmall{cursor:pointer;width:60%;margin-top:18px;height:37px;border:1px solid #949494;border-radius:5px;background:-webkit-linear-gradient(top,#fcfcfc,#d8d9d9);background: -moz-linear-gradient(top,#fcfcfc,#d8d9d9);color:#666464;font-size:20px}
+#mark_share .mark_shareimg{width:80%;margin-left:10%;margin-top:77px;margin-bottom:105px}
+#gs_score .gs_tle .gs_sr_bg2{right:2%;position:absolute;width:97px;display:inline-block;background:url(../img/gs011.gif) no-repeat right;background-size:contain}
+#gs_score .gs_tle .gs_sr_bg2 p{cursor:pointer;font-size:15px;color:#666464;margin-left:44%;font-weight:400}
+#gs_content .judge{z-index:5;width:15%;height:38px;position:absolute;padding-top:7px;right:2%}.gs_fen{text-align:center;margin-top:21px}.gs_fen img{width:26%}.alright{width:92%;color:#666464;font-size:17px;text-align:center;margin-top:11px;border-top:1px dashed #b5b5b6;padding-top:11px;padding-bottom:30px}.alright .color0{color:#e8380d;padding-right:6%}#fi_con{width:100%;height:auto;background:#feeedb;text-align:center}
+#fi_con .fi_percent{width:86%;height:74px;margin-top:-2px;background:url(../img/five3.gif) no-repeat;background-size:100% 74px;padding-bottom:60px}
+#fi_con .fi_percent p{color:#ea5504;font-size:32px;margin-left:31%;padding-top:23px;position:relative;text-align:left}
+#gs_button .five_button{cursor:pointer;width:86%;margin-top:18px;height:37px;border:1px solid #949494;border-radius:5px;background:0;color:#666464;font-size:20px;display:none}
+#mark{text-align:center;z-index:1000;width:100%;height:100%;min-height:1100px;top:0;left:0;position:fixed;filter:Alpha(opacity=80);opacity:0.8;background:#000;background-size:80% auto;display:none}
+#mark_frame .mark_img{width:80%;margin-left:16%}
+#mark_frame .mark_per1{width:48%;height:68px;background:url(../img/mark_per1.gif) no-repeat;background-size:100% 68px;margin-top:23px;padding-bottom:55px;opacity:1.0;filter:Alpha(opacity=100);display:none}
+#mark_frame .mark_per{width:48%;height:68px;background:url(../img/mark_per.gif) no-repeat;background-size:100% 68px;margin-top:23px;padding-bottom:55px;opacity:1.0;filter:Alpha(opacity=100)}
+#mark_frame .mark_per p{color:#ea5504;font-size:28px;text-align:left;margin-left:35%;top:27px;position:relative}
+#stl_title{margin-top:-2px}#share{width:16%;z-index:12000;top:0;right:5%;position:fixed;display:block}
+#gs_time .rank_bg{text-align:center;width:98%;height:97.5px;background:url(../img/rank1.gif) no-repeat;background-size:100% 97.5px}
+#gs_time .rank_bg p{color:#727171;font-size:15px;padding-top:12px;padding-bottom:13px;position:relative}
+#gs_time .rank_bg .rank_image{width:70%;height:34px}
+#gs_time .rank_bg .rank_image img{height:34px}
+#fi_con .fi_conlbg{width:100%;background:url(../img/rank2.gif) no-repeat top left;background-size:12% 325px}
+#fi_con .fi_conrbg{width:100%;background:url(../img/rank3.gif) no-repeat top right;background-size:10% 325px}
+#fi_con .rank_word{width:72%;margin-top:20px;margin-bottom:22px}
+#fi_con .rank_percent{width:86%;height:74px;margin-top:-2px;background:url(../img/rank6.png) no-repeat;background-size:100% 74px}
+#fi_con .rank_percent p{color:#ea5504;font-size:32px;margin-left:30%;padding-top:23px;position:relative;text-align:left}
+#fi_con .rank_img{width:30%;margin-left:-40%;margin-top:20px}
+#gs_banner,#fi_con .fi_word,#stl_ban,#stl_title{width:100%}
+#gs_intro p span,#gs_time .gs_result .gs_daycolor,.alright .color{color:#3e3a39}
+#mark_share,#mark_frame{width:100%;z-index:1001;position:fixed;top:0;left:0;text-align:center;display:none}
+#mark_share a,#mark_frame a{display:block;width:80px;color:#FFF;font-size:20px;border:1px dashed #FFF;border-radius:5px;padding:8px 15px}
+#gs_time .gs_title .fi_ban,#gs_time .rank_timg{width:94px;height:43px;z-index:5;position:absolute;right:7%;top:1px}

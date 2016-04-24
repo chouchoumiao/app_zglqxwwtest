@@ -1,0 +1,20 @@
+name: zglqxwwtest
+version: 1
+handle:
+- compress: if ( out_header["Content-Length"]>=50) compress
+- compress: if ( out_header["Content-type"]=="text/css" ) compress
+- compress: if ( out_header["Content-type"]=="text/javascript" ) compress
+- compress: if ( out_header["Content-type"]=="text/html" ) compress
+- compress: if ( out_header["Content-type"]=="image/png" ) compress
+- compress: if ( out_header["Content-type"]=="image/jpeg" ) compress
+- compress: if ( out_header["Content-type"]=="text/plain" ) compress
+- compress: if ( out_header["Use-Compress"] == "1") compress
+- expire: if( path ~ "woff" ) time 8640000
+- expire: if( path ~ "ttf" ) time 8640000
+- expire: if( path ~ "bmp" ) time 864000
+- expire: if( path ~ "jpg" ) time 864000
+- expire: if( path ~ "jpeg" ) time 864000
+- expire: if( path ~ "png" ) time 864000
+- expire: if( path ~ "gif" ) time 864000
+- expire: if( path ~ "ico" ) time 864000
+- errordoc:  404 /Static/404/404.html
