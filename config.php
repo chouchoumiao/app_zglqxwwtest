@@ -4,7 +4,8 @@ $config = array(
 		'left_delimiter' => '{',
 		'right_delimiter' => '}',
 		'template_dir' => 'tpl',
-		'compile_dir' => 'data/template_c'
+		'compile_dir' => 'data/template_c',
+		'caching' => false   //È¥³ý»º´æ
 	),
 	'dbconfig' => array(
 		'dbhost' => 'localhost',

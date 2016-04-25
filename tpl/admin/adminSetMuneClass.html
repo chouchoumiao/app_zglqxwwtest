@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/flat-ui/2.2.2/css/flat-ui.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1" id = myform>
+            <div class="form-group">
+                <label for="eventNameList">该公公众号可使用的活动(逗号分开)：</label>
+                <textarea type="text" class="form-control" id="eventNameList"  rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="eventBackUrlList">各个活动对应的后台URL(逗号分开)：</label>
+                <textarea type="text" class="form-control" id="eventBackUrlList"  rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="eventForwardUrlList">各个活动对应的前端URL(逗号分开)：</label>
+                <textarea type="text" class="form-control" id="eventForwardUrlList"  rows="2"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="button" class="btn btn-info btn-block" id = "adminSetMuneClassBtn">设置</button>
+            </div>
+        </div>
+        <div class="col-md-8 col-md-offset-2">
+            <div id="myMsg" class="alert alert-danger" style = "display:none"></div>
+            <div id="myOKMsg" class="alert alert-success" style = "display:none"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="../../Admin/login/js/adminEdit.js?v=20150104"></script>
+</body>
+</html>

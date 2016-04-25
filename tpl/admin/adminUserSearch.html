@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<!--<script type="text/javascript" src="../../Admin/login/js/adminEdit.js?v=20150107"></script>-->
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script src="../js/multi.js"></script>
+<script>
+$(document).ready(function() {
+    var pagecount = <?php echo $count;?>;
+    var pagesize = <?php echo $page_num;?>;
+    var currentpage = <?php echo $page;?>;
+    var showCount = <?php echo $showCount?>;
+    multi(pagecount,pagesize,currentpage,showCount,"adminUserSearch");
+    $("#showPage ").val(<?php echo $showCount;?>); //用于显示select的选中事件
+});
+
+
+function isDelete(id){
+    if(confirm("确认删除吗？")){
+
+    }else{
+        return false;
+    }
+};
+</script>
+
+</HEAD>
+<body>
+<!--页面名称-->
+<h3>管理员用户管理<a href="tpl/admin/addUserByAdmin.html">新增用户>></a></h3>
+<!--列表开始-->
+
+<table class="table table-bordered">
+    <thead><tr>
+        <th>序号</th>
+        <th>用户名</th>
+        <th>注册时间</th>
+        <th>操作</th>
+    </tr></thead>
+
+    {if $class_list}
+    {foreach from=$class_list item = value}
+        {if $value.username != "admin"}
+            <tbody>
+                <tr>
+                    <td>{$value.id}</td>
+                    <td>{$value.username}</td>
+                    <td>{$value.loginTime}</td>
+                    <!--<td><a href="javascript:void(0);" onclick="isDelete({$value.id})">删除</a></td>-->
+                    <td><a href="javascript:void(0);" onclick = "isDelete({$value.id})">删除</a></td>
+                <tr>
+            <tbody>
+        {/if}
+    {/foreach}
+    {else}
+        <tr><td colspan=3>无记录</td></tr>
+    {/if}
+</table>
+<ul class="pagination" id="pagination"></ul>
+
+
+</body>
+</html>

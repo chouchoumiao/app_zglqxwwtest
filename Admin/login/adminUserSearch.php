@@ -60,7 +60,7 @@ if($count){
 }
 ?>
 <!--页面名称-->
-<h3>管理员用户管理<a href="addUserByAdmin.php">新增用户>></a></h3>
+<h3>管理员用户管理<a href="../../tpl/admin/addUserByAdmin.php">新增用户>></a></h3>
 <!--列表开始-->
 
 <table class="table table-bordered">

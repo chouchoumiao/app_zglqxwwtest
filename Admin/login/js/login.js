@@ -24,7 +24,6 @@ $(function(){
 		}
 		$.ajax({
 			type: "POST",
-			//url: "login.php?action=login",
 			url: "admin.php?controller=admin&method=login",
 			dataType: "json",
 			data: {"user":user,"pass":pass},
@@ -42,16 +41,6 @@ $(function(){
 				}
 			},
             error:function(xhr){alert('PHP页面有错误！'+xhr.responseText);}
-		});
-	});
-	
-	$("#logout").live('click',function(){
-		$.post("login.php?action=logout",function(msg){
-			if(msg==1){
-			    $("#result").remove();
-			    var div = "<div id='login_form'><p><label>用户名：</label> <input type='text' class='input' name='user' id='user' /></p><p><label>密 码：</label> <input type='password' class='input' name='pass' id='pass' /></p><div class='sub'><input type='submit' class='btn' value='登 录' /></div></div>";
-			    $("#login").append(div);
-			}
 		});
 	});
 
