@@ -107,7 +107,7 @@ if($class_list){
 
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script src="../js/multi.js"></script>
+<script src="../../Static/JS/multi.js"></script>
 <script>
     $(document).ready(function() {
         var pagecount = <?php echo $count;?>;

@@ -1,57 +1,34 @@
-<?php /* Smarty version Smarty-3.1.16, created on 2016-04-01 16:46:30
+<?php /* Smarty version Smarty-3.1.16, created on 2016-04-25 17:33:10
          compiled from "tpl\admin\adminUserSearch.html" */ ?>
-<?php /*%%SmartyHeaderCode:463256fe19d5f2b346-51948905%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:21403571dd127836690-46510083%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
     '0348e0c0676c45f522ee918e448c05a62e427e76' => 
     array (
       0 => 'tpl\\admin\\adminUserSearch.html',
-      1 => 1459500185,
+      1 => 1461576756,
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '463256fe19d5f2b346-51948905',
+  'nocache_hash' => '21403571dd127836690-46510083',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.16',
-  'unifunc' => 'content_56fe19d60fa681_72881957',
+  'unifunc' => 'content_571dd1278b36b6_67354966',
   'variables' => 
   array (
-    'class_list' => 0,
+    'retArr' => 0,
     'value' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_56fe19d60fa681_72881957')) {function content_56fe19d60fa681_72881957($_smarty_tpl) {?><!DOCTYPE HTML>
+<?php if ($_valid && !is_callable('content_571dd1278b36b6_67354966')) {function content_571dd1278b36b6_67354966($_smarty_tpl) {?><!DOCTYPE HTML>
 <html>
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-<!--<script type="text/javascript" src="../../Admin/login/js/adminEdit.js?v=20150107"></script>-->
-<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script src="../js/multi.js"></script>
-<script>
-$(document).ready(function() {
-    var pagecount = <<?php ?>?php echo $count;?<?php ?>>;
-    var pagesize = <<?php ?>?php echo $page_num;?<?php ?>>;
-    var currentpage = <<?php ?>?php echo $page;?<?php ?>>;
-    var showCount = <<?php ?>?php echo $showCount?<?php ?>>;
-    multi(pagecount,pagesize,currentpage,showCount,"adminUserSearch");
-    $("#showPage ").val(<<?php ?>?php echo $showCount;?<?php ?>>); //用于显示select的选中事件
-});
-
-
-function isDelete(id){
-    if(confirm("确认删除吗？")){
-
-    }else{
-        return false;
-    }
-};
-</script>
 
 </HEAD>
 <body>
@@ -67,9 +44,9 @@ function isDelete(id){
         <th>操作</th>
     </tr></thead>
 
-    <?php if ($_smarty_tpl->tpl_vars['class_list']->value) {?>
+    <?php if ($_smarty_tpl->tpl_vars['retArr']->value['class_list']) {?>
     <?php  $_smarty_tpl->tpl_vars['value'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['value']->_loop = false;
- $_from = $_smarty_tpl->tpl_vars['class_list']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+ $_from = $_smarty_tpl->tpl_vars['retArr']->value['class_list']; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
 foreach ($_from as $_smarty_tpl->tpl_vars['value']->key => $_smarty_tpl->tpl_vars['value']->value) {
 $_smarty_tpl->tpl_vars['value']->_loop = true;
 ?>
@@ -82,8 +59,6 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
 </td>
                     <td><?php echo $_smarty_tpl->tpl_vars['value']->value['loginTime'];?>
 </td>
-                    <!--<td><a href="javascript:void(0);" onclick="isDelete(<?php echo $_smarty_tpl->tpl_vars['value']->value['id'];?>
-)">删除</a></td>-->
                     <td><a href="javascript:void(0);" onclick = "isDelete(<?php echo $_smarty_tpl->tpl_vars['value']->value['id'];?>
 )">删除</a></td>
                 <tr>
@@ -96,7 +71,45 @@ $_smarty_tpl->tpl_vars['value']->_loop = true;
 </table>
 <ul class="pagination" id="pagination"></ul>
 
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./Static/JS/multi.js?v=20160115"></script>
+<script>
+ $(document).ready(function() {
+    var pagecount = <?php echo $_smarty_tpl->tpl_vars['retArr']->value['count'];?>
+;
+    var pagesize = <?php echo $_smarty_tpl->tpl_vars['retArr']->value['page_num'];?>
+;
+    var currentpage =  <?php echo $_smarty_tpl->tpl_vars['retArr']->value['page'];?>
+;
+    var showCount =  <?php echo $_smarty_tpl->tpl_vars['retArr']->value['showCount'];?>
+;
+    multi(pagecount,pagesize,currentpage,showCount,"showUserInfo");
+    $("#showPage ").val(<?php echo $_smarty_tpl->tpl_vars['retArr']->value['showCount'];?>
+); //用于显示select的选中事件
+});
 
+function isDelete(id){
+    if(confirm("确认删除吗？")){
+        $.ajax({
+            url:'./admin.php?controller=admin&method=delUserInfoByID'
+            ,type:"POST"
+            ,data:{
+                    "id":id
+                }
+            ,dataType: "json"
+            ,success:function(json){
+                alert(json.msg);
+                location.reload();
+            }
+            ,error:function(xhr){
+                    alert('PHP页面有错误！'+xhr.responseText);
+                }
+        });
+    }else{
+        return false;
+    }
+};
+</script>
 </body>
-</html>
-<?php }} ?>
+</html><?php }} ?>

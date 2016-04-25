@@ -122,26 +122,4 @@ $(function(){
             });
         }
     });
-
-    function isDelete(id){
-        if(confirm("确认删除吗？")){
-            $.ajax({
-                url:'admin.php?controller=admin&method=delUserInfoByID'
-                ,type:"POST"
-                ,data:{"id":id}
-                ,dataType: "json"
-                ,success:function(json){
-                    if(json.success){
-                        alert('删除成功!');
-                    }else{
-                         alert('删除失败!');
-                    }
-                }
-                ,error:function(xhr){alert('PHP页面有错误！'+xhr.responseText);}
-            });
-        }else{
-            return false;
-        }
-    };
-
 });

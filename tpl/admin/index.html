@@ -6,8 +6,8 @@
 <link rel="stylesheet" href="Admin/login/css/index.css?v=20150435" type="text/css" media="screen" />
 <!-- script标签放在底下，刷新时候会有跳动，所以需要放在页面加载前-->
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="Admin/login/js/tendina.min.js?v=20150103"></script>
-<script type="text/javascript" src="Admin/login/js/index.js?v=20150123" charset="utf-8"></script>
+<script type="text/javascript" src="./Static/JS/admin/tendina.min.js?v=20150103"></script>
+<script type="text/javascript" src="./Static/JS/Admin/index.js?v=20150123" charset="utf-8"></script>
 </head>
 <body>
 
@@ -146,9 +146,12 @@
             <a target="menuFrame" href="javascript:void(0)"> <i class="glyph-icon icon-reorder"></i>用户管理</a>
             <ul>
                 {if $userName eq "gokayuwu"}
-
-                    <li><a href="admin.php?controller=admin&method=showUserInfo" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>管理员权限用户查询</a></li>
-                    <li><a href="tpl/admin/addUserByAdmin.html" target="menuFrame"><i class="glyph-icon icon-chevron-right"></i>管理员权限用户添加</a></li>
+                    <li><a href="admin.php?controller=admin&method=showUserInfo" target="menuFrame">
+                        <i class="glyph-icon icon-chevron-right"></i>管理员权限用户查询</a>
+                    </li>
+                    <li><a href="tpl/admin/addUserByAdmin.html" target="menuFrame">
+                        <i class="glyph-icon icon-chevron-right"></i>管理员权限用户添加</a>
+                    </li>
                 {/if}
                 <li><a href="tpl/admin/adminEdit.html" target="menuFrame">
                         <i class="glyph-icon icon-chevron-right"></i>修改密码</a></li>

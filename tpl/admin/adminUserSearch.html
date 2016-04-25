@@ -3,29 +3,6 @@
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-<!--<script type="text/javascript" src="../../Admin/login/js/adminEdit.js?v=20150107"></script>-->
-<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
-<script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script src="../js/multi.js"></script>
-<script>
-$(document).ready(function() {
-    var pagecount = <?php echo $count;?>;
-    var pagesize = <?php echo $page_num;?>;
-    var currentpage = <?php echo $page;?>;
-    var showCount = <?php echo $showCount?>;
-    multi(pagecount,pagesize,currentpage,showCount,"adminUserSearch");
-    $("#showPage ").val(<?php echo $showCount;?>); //用于显示select的选中事件
-});
-
-
-function isDelete(id){
-    if(confirm("确认删除吗？")){
-
-    }else{
-        return false;
-    }
-};
-</script>
 
 </HEAD>
 <body>
@@ -41,15 +18,14 @@ function isDelete(id){
         <th>操作</th>
     </tr></thead>
 
-    {if $class_list}
-    {foreach from=$class_list item = value}
+    {if $retArr['class_list']}
+    {foreach from=$retArr['class_list'] item = value}
         {if $value.username != "admin"}
             <tbody>
                 <tr>
                     <td>{$value.id}</td>
                     <td>{$value.username}</td>
                     <td>{$value.loginTime}</td>
-                    <!--<td><a href="javascript:void(0);" onclick="isDelete({$value.id})">删除</a></td>-->
                     <td><a href="javascript:void(0);" onclick = "isDelete({$value.id})">删除</a></td>
                 <tr>
             <tbody>
@@ -61,6 +37,40 @@ function isDelete(id){
 </table>
 <ul class="pagination" id="pagination"></ul>
 
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="./Static/JS/multi.js?v=20160115"></script>
+<script>
+ $(document).ready(function() {
+    var pagecount = {$retArr.count};
+    var pagesize = {$retArr.page_num};
+    var currentpage =  {$retArr.page};
+    var showCount =  {$retArr.showCount};
+    multi(pagecount,pagesize,currentpage,showCount,"showUserInfo");
+    $("#showPage ").val({$retArr.showCount}); //用于显示select的选中事件
+});
 
+function isDelete(id){
+    if(confirm("确认删除吗？")){
+        $.ajax({
+            url:'./admin.php?controller=admin&method=delUserInfoByID'
+            ,type:"POST"
+            ,data:{
+                    "id":id
+                }
+            ,dataType: "json"
+            ,success:function(json){
+                alert(json.msg);
+                location.reload();
+            }
+            ,error:function(xhr){
+                    alert('PHP页面有错误！'+xhr.responseText);
+                }
+        });
+    }else{
+        return false;
+    }
+};
+</script>
 </body>
 </html>

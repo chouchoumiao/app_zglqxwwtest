@@ -135,7 +135,7 @@ if($count){
 <ul class="pagination" id="pagination"></ul>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="//cdn.bootcss.com/jquery.tablesorter/2.24.6/js/jquery.tablesorter.js"></script>
-<script src="../js/multi.js"></script>
+<script src="../../Static/JS/multi.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 

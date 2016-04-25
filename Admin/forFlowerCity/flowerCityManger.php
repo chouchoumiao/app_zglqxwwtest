@@ -110,7 +110,7 @@ if($count){
 
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script src="../js/multi.js?v=20151045"></script>
+<script src="../../Static/JS/multi.js?v=20151045"></script>
 <script>
 	$(document).ready(function() {
 		var pagecount = <?php echo $count;?>;

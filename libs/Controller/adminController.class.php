@@ -97,7 +97,7 @@ class adminController{
 	public function showUserInfo(){
 		//VIEW::assign(M('admin')->getUserByAdmin());
 		VIEW::assign(array(
-					'class_list'=>M('admin')->getUserByAdmin()
+					'retArr'=>M('admin')->getUserByAdmin()
 					));
 		VIEW::display('admin/adminUserSearch.html');
 
@@ -106,12 +106,21 @@ class adminController{
 	public function delUserInfoByID(){
 
 		if(!isset($_POST["id"])){
-			return false;
+			$arr['success'] = 0;
+			$arr['msg'] = '无法取得id！';
+			echo json_encode($arr);
+			exit;
 		}
 		$id = intval(addslashes($_POST["id"]));
 
-		return M('admin')->delUserByID($id);
-
+		 if(M('admin')->delUserByID($id)){
+			 $arr['success'] = 1;
+			 $arr['msg'] = '删除成功！';
+		 }else{
+			 $arr['success'] = 0;
+			 $arr['msg'] = '删除失败';
+		 }
+		echo json_encode($arr);
 	}
 
 
