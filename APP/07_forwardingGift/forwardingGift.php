@@ -42,7 +42,7 @@ $NGInfo = getDataBySql($sql);
 <title>路桥发布个人中心</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-<link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/flat-ui/2.2.2/css/flat-ui.min.css" rel="stylesheet">
 
 </head>
@@ -61,7 +61,7 @@ $NGInfo = getDataBySql($sql);
                         <label for="up_img">点击下方图标进行照片上传 :</label>
                         <input type="file" id="up_img" name="up_img" style = "display:none" accept="image/*"/>
                         <div id="imgdiv">
-                            <img id="imgShow" src="../../Static/img/upload.jpg" class="img-rounded" width="150"/>
+                            <img id="imgShow" src="../../Static/IMG/upload.jpg" class="img-rounded" width="150"/>
                         </div>
                         <p class="text-danger"><small>支持jpg,png，请上传小于5M的图片</small></p>
                     </div>

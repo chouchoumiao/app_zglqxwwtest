@@ -6,7 +6,7 @@
 <title>管理公众号</title>
 
 <link rel="stylesheet" href="css/pageFormart.css" type="text/css" media="screen" />
-<link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 
 <style>
 .account{padding:15px; margin:0; overflow:hidden;}

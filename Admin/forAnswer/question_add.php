@@ -3,7 +3,7 @@
 <html>
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 </HEAD>
 <script>
    window.onload = function () { 
@@ -166,7 +166,7 @@ if($action=="edit"){
             <?php 
                 if(($answerInfoArr['question_img'] == "") || ($answerInfoArr['question_img'] == "imgPath error")){
             ?>
-                    <img id="imgShow" src="../../Static/img/upload.jpg" width="200"/>
+                    <img id="imgShow" src="../../Static/IMG/upload.jpg" width="200"/>
             <?php 
                 }else{
             ?>

@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 
 <link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.3.0/jquery.mobile-1.3.0.min.css"/>
-<link type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<link type="text/css" href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 <link type="text/css" href="../css/bbsPhotoWallAdvice/common.css" rel="stylesheet">
 
 <style>  
@@ -74,14 +74,14 @@ isOpenIDWeixinIDOK($openid,$weixinID,"参数错误");
                 <label for="up_img1">上传图(最多4张)</label>
                 <input type="file" id="up_img1" name="up_img1" style = "display:none" accept="image/*"/>
                 <div id="imgdiv1">
-                    <img id="imgShow1" src="../../Static/img/upload.jpg" class="img-rounded" width="130" height = "150"/>
+                    <img id="imgShow1" src="../../Static/IMG/upload.jpg" class="img-rounded" width="130" height = "150"/>
                 </div>
             </div>
             <div class = "divRight">
                 <label for="up_img2">上传图(最多4张)</label>
                 <input type="file" id="up_img2" name="up_img2" style = "display:none" accept="image/*"/>
                 <div id="imgdiv2">
-                    <img id="imgShow2" src="../../Static/img/upload.jpg" class="img-rounded" width="130" height = "150"/>
+                    <img id="imgShow2" src="../../Static/IMG/upload.jpg" class="img-rounded" width="130" height = "150"/>
                 </div>
             </div>  
         </div>
@@ -90,14 +90,14 @@ isOpenIDWeixinIDOK($openid,$weixinID,"参数错误");
                 <label for="up_img3">上传图(最多4张)</label>
                 <input type="file" id="up_img3" name="up_img3" style = "display:none" accept="image/*"/>
                 <div id="imgdiv3">
-                    <img id="imgShow3" src="../../Static/img/upload.jpg" class="img-rounded" width="130" height = "150"/>
+                    <img id="imgShow3" src="../../Static/IMG/upload.jpg" class="img-rounded" width="130" height = "150"/>
                 </div>
             </div>
             <div class = "divRight">
                 <label for="up_img4">上传图(最多4张)</label>
                 <input type="file" id="up_img4" name="up_img4" style = "display:none" accept="image/*"/>
                 <div id="imgdiv4">
-                    <img id="imgShow4" src="../../Static/img/upload.jpg" class="img-rounded" width="130" height = "150"/>
+                    <img id="imgShow4" src="../../Static/IMG/upload.jpg" class="img-rounded" width="130" height = "150"/>
                 </div>
             </div>
         </div>

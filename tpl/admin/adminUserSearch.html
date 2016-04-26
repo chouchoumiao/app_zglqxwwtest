@@ -1,16 +1,19 @@
 <!DOCTYPE HTML>
 <html>
-<HEAD>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
-
-</HEAD>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
 <body>
+<div class="container">
 <!--页面名称-->
 <h3>管理员用户管理<a href="tpl/admin/addUserByAdmin.html">新增用户>></a></h3>
 <!--列表开始-->
-
-<table class="table table-bordered">
+<br/>
+<table class="table table-bordered table-hover">
     <thead><tr>
         <th>序号</th>
         <th>用户名</th>
@@ -20,7 +23,16 @@
 
     {if $retArr['class_list']}
     {foreach from=$retArr['class_list'] item = value}
-        {if $value.username != "admin"}
+        {if $value.username == "admin"}
+            <tbody>
+                <tr>
+                    <td>{$value.id}</td>
+                    <td>{$value.username}</td>
+                    <td>{$value.loginTime}</td>
+                    <td><a href="javascript:void(0);">默认管理员不能删除</a></td>
+                <tr>
+            <tbody>
+        {else}
             <tbody>
                 <tr>
                     <td>{$value.id}</td>
@@ -36,7 +48,7 @@
     {/if}
 </table>
 <ul class="pagination" id="pagination"></ul>
-
+</div>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="./Static/JS/multi.js?v=20160115"></script>
@@ -46,6 +58,7 @@
     var pagesize = {$retArr.page_num};
     var currentpage =  {$retArr.page};
     var showCount =  {$retArr.showCount};
+
     multi(pagecount,pagesize,currentpage,showCount,"showUserInfo");
     $("#showPage ").val({$retArr.showCount}); //用于显示select的选中事件
 });

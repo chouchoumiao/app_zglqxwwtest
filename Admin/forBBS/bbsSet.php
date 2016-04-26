@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <HEAD>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="../css/imgEnlarge.css?v=20150519" type="text/css" rel="stylesheet" />
 
 </HEAD>

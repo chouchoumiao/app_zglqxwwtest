@@ -6,7 +6,7 @@
 <meta name="format-detection" content="telephone=no">
 <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
 <link href="./css/style.css" rel="stylesheet" type="text/css">
-<link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="//cdn.bootcss.com/flat-ui/2.2.2/css/flat-ui.min.css" rel="stylesheet">
 <link href="http://res.wx.qq.com/open/js/jweixin-1.0.0.js" rel="stylesheet">
 <head>

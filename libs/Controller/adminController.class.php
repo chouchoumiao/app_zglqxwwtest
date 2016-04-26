@@ -95,7 +95,6 @@ class adminController{
 	 *
 	 */
 	public function showUserInfo(){
-		//VIEW::assign(M('admin')->getUserByAdmin());
 		VIEW::assign(array(
 					'retArr'=>M('admin')->getUserByAdmin()
 					));

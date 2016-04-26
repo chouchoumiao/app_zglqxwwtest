@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html lang="zh-cn">
+<HEAD>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+</HEAD>
+<body>
+<div class="container">
+<!--页面名称-->
+<h3>会员信息 一览</h3>
+<!--列表开始-->
+
+<table class="table table-bordered table-hover" >
+    <thead>
+        <tr>
+            <th>会员号</th>
+            <th>姓名/昵称</th>
+            <th>性别</th>
+            <th>联系方式</th>
+            <!--<th><?php echo $weixinName;?>数</th>-->
+            <th>数</th>
+            <th>创建时间</th>
+            <th>编辑</th>
+        </tr>
+    </thead>
+
+    {if $retArr['class_list']}
+    {foreach from=$retArr['class_list'] item = value}
+        <tbody>
+            <tr>
+                <td>{$value.Vip_id}</td>
+                <td>{$value.Vip_name}</td>
+                <td>{$value.Vip_sex}</td>
+                <td>{$value.Vip_tel}</td>
+                <td>{$value.Vip_integral}</td>
+                <td>{$value.Vip_createtime}</td>
+                <td><a href="javascript:void(0);" onclick = "isDelete({$value.id})">删除</a></td>
+            <tr>
+        </tbody>
+    {/foreach}
+    {else}
+        <tbody><tr><td colspan=12>无记录</td></tr></tbody>
+    {/if}
+</table>
+<ul class="pagination" id="pagination"></ul>
+</div>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+<!--<script src="../../Static/JS/multi.js"></script>-->
+<script type="text/javascript" src="./Static/JS/multi.js?v=20160115"></script>
+<script>
+    $(document).ready(function() {
+        var pagecount = <?php echo $count;?>;
+        var pagesize = <?php echo $page_num;?>;
+        var currentpage = <?php echo $page;?>;
+        var showCount = <?php echo $showCount?>;
+        multi(pagecount,pagesize,currentpage,showCount,"searchVipInfo");
+        $("#showPage ").val(<?php echo $showCount;?>); //用于显示select的选中事件
+    });
+    function isDelete(id){
+        if(confirm("确认删除吗？")){
+            location.href='searchVipInfo.php?action=del&id='+id;
+        }else{
+            return false;
+        }
+    }
+</script>
+</body>
+</html>

@@ -897,7 +897,7 @@ function is_mobile($mobile)
 //function echoWarning($msg){
 //    echo '<html>
 //        <head>
-//        <link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+//        <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 //        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 //        <style>
 //        .wrap{margin:0 auto;width:80%;text-align: center;}
@@ -916,7 +916,7 @@ function is_mobile($mobile)
 //function echoInfo($msg){
 //    echo '<html>
 //        <head>
-//        <link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+//        <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 //        <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 //        <style>
 //        .wrap{margin:0 auto;width:80%;text-align: center;}
@@ -988,7 +988,7 @@ function is_mobile($mobile)
 //        echo '<html>
 //                <head>
 //                <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-//                <link href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+//                <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 //                <link href="//cdn.bootcss.com/flat-ui/2.2.2/css/flat-ui.min.css" rel="stylesheet">
 //                <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 //                <style>

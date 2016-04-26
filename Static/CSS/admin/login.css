@@ -44,7 +44,7 @@
 .btn{
     width:86px;
     height:33px;
-    background:url(../images/login_btn.jpg) no-repeat;
+    background:url(../../IMG/admin/login_btn.jpg) no-repeat;
     border:none;
     text-indent:-999em;
     display:block;
@@ -67,7 +67,7 @@
 }
 
 .loading{
-    background:url(../images/loading.gif) no-repeat 0 6px;
+    background:url(../../IMG/admin/loading.gif) no-repeat 0 6px;
     padding-left:18px;
     color:#999
 }

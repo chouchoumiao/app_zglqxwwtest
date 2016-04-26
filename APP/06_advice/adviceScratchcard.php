@@ -9,7 +9,7 @@
 <meta name="format-detection" content="telephone=no">
 
 <link rel="stylesheet" href="http://apps.bdimg.com/libs/jquerymobile/1.3.0/jquery.mobile-1.3.0.min.css"/>
-<link type="text/css" href="http://apps.bdimg.com/libs/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+<link type="text/css" href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 <link type="text/css" href="../css/bbsPhotoWallAdvice/common.css" rel="stylesheet">
 
 <?php
