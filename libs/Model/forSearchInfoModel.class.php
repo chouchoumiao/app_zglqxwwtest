@@ -13,22 +13,22 @@ class forSearchInfoModel extends commonModel{
 	}
 
 	function getVipList(){
-		//È¡µÃ»áÔ±ÓÃ»§µÄ×ÜÊý
+		//È¡ï¿½Ã»ï¿½Ô±ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½    ---------
 		$count = $this->getVipCount();
-		//Èç¹ûÊý¾Ý±íÀïÓÐÊý¾Ý
+		//ï¿½ï¿½ï¿½ï¿½ï¿½Ý±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		if($count){
-			//Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êý
-			$multiArr = parent::getMulti(); //È¡µÃ·ÖÒ³ÐÅÏ¢(¹«¹²ModelÀàÀï³éÈ¡)
+			//Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½Â¼ï¿½ï¿½
+			$multiArr = parent::getMulti();
 
-			$class_list = $this->getVipWithMulti($multiArr); //¸ù¾Ý·ÖÒ³ÐÅÏ¢È¡µÃ»áÔ±ÈËÔ±ÐÅÏ¢
+			$class_list = $this->getVipWithMulti($multiArr);
 
 			for($i = 0; $i<count($class_list); $i++){
 				if($class_list[$i]['Vip_sex'] == 1){
-					$class_list[$i]['Vip_sex'] = 'ÄÐ';
+					$class_list[$i]['Vip_sex'] = 'ç”·';
 				}elseif($class_list[$i]['Vip_sex'] == 0){
-					$class_list[$i]['Vip_sex'] == 'Å®';
+					$class_list[$i]['Vip_sex'] == 'ç”·';
 				}else{
-					$class_list[$i]['Vip_sex'] == 'Î´Öª';
+					$class_list[$i]['Vip_sex'] == 'æœªçŸ¥';
 				}
 			}
 			$retArr = array(
@@ -46,7 +46,7 @@ class forSearchInfoModel extends commonModel{
 
 
 	/**
-	 * È¡µÃËùÓÃÓÃ»§µÄ×ÜÊý
+	 * È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * private
 	 * @return mixed
 	 */
@@ -57,13 +57,13 @@ class forSearchInfoModel extends commonModel{
 
 
 	/**
-	 * ¸ù¾Ý·ÖÒ³ÐÅÏ¢È¡µÃÏà¹Ø»áÔ±ÐÅÏ¢
+	 * ï¿½ï¿½Ý·ï¿½Ò³ï¿½ï¿½Ï¢È¡ï¿½ï¿½ï¿½ï¿½Ø»ï¿½Ô±ï¿½ï¿½Ï¢
 	 * private
 	 * @param $arr
 	 * @return mixed
 	 */
 	private function getVipWithMulti($arr){
-		//»ñÈ¡·ûºÏÌõ¼þµÄÊý¾Ý
+		//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		$sql = "select * from Vip
 				where WEIXIN_ID = $this->weixinID
 				AND Vip_isDeleted = 0

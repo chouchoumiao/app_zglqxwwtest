@@ -2,7 +2,7 @@
 class loginModel{
 
 	/**
-	 * ÅĞ¶ÏÓÃ»§ÃÜÂë
+	 * ï¿½Ğ¶ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * @param $username
 	 * @param $password
 	 * @return bool
@@ -18,7 +18,7 @@ class loginModel{
 	}
 
 	/**
-	 * ¸üĞÂ¸ÄÓÃ»§µÄµÇÂ¼ĞÅÏ¢
+	 * ï¿½ï¿½ï¿½Â¸ï¿½ï¿½Ã»ï¿½ï¿½Äµï¿½Â¼ï¿½ï¿½Ï¢
 	 * @param $auth
 	 */
 	function updateAdminInfo($auth){
@@ -35,12 +35,12 @@ class loginModel{
 	}
 
 	/**
-	 * ÏÔÊ¾Ö÷Ò³ÃæµÄËùÓĞĞÅÏ¢
+	 * ï¿½ï¿½Ê¾ï¿½ï¿½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 	 * @return array
 	 */
 	function showMain($name){
 
-		//³õÊ¼»¯¸÷×Ö¶Î
+		//ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½ï¿½Ö¶ï¿½
 		$weixinName = '';
 		$isWeixinInfoExist = false;
 		$isEventListExist = false;
@@ -50,16 +50,18 @@ class loginModel{
 		$eventUrlArr = array();
 		$thisWeixinID = '';
 
-		//»ñÈ¡¸ÃÓÃ»§ËùÓĞ¿ÉÓÃµÄ¹«ÖÚºÅµÄ»ù±¾ĞÅÏ¢
+		//ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ğ¿ï¿½ï¿½ÃµÄ¹ï¿½ï¿½ÚºÅµÄ»ï¿½ï¿½ï¿½Ï¢
 		$weixinInfo = $this->getWeiInfoByName($name);
 
-		//ÅĞ¶Ï¸ÃÓÃ»§ÊÇ·ñ´æÔÚ¿ÉÉèÖÃµÄ¹«ÖÚºÅ
+		//ï¿½Ğ¶Ï¸ï¿½ï¿½Ã»ï¿½ï¿½Ç·ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ÃµÄ¹ï¿½ï¿½Úºï¿½
 		if(empty($weixinInfo)){
-			$msg = "µ±Ç°Î´ÉèÖÃ¹ı¹«ÖÚºÅ£¬ÇëÌí¼Ó¹«ÖÚºÅĞÅÏ¢£¡";
+			$msg = "ï¿½ï¿½Ç°Î´ï¿½ï¿½ï¿½Ã¹ï¿½ï¿½ÚºÅ£ï¿½ï¿½ï¿½ï¿½ï¿½Ó¹ï¿½ï¿½Úºï¿½ï¿½ï¿½Ï¢ï¿½ï¿½";
 		}else{
 			$isWeixinInfoExist = true;
 			if(!isset($_SESSION['weixinID'])){
 				$thisWeixinID = $weixinInfo[0]['id'];
+				//è¿½åŠ sessionä¸­çš„weixinID
+				$_SESSION['weixinID'] = $thisWeixinID;
 			}else{
 				$thisWeixinID = $_SESSION['weixinID'];
 			}
@@ -76,7 +78,7 @@ class loginModel{
 			}
 		}
 
-		//·µ»ØÏà¹ØĞÅÏ¢
+		//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
 		return array(
 			'eventNameArr'=>$eventNameArr,
 			'eventUrlArr'=>$eventUrlArr,
@@ -91,7 +93,7 @@ class loginModel{
 	}
 
 	/**
-	 * »ñÈ¡¸ÃÓÃ»§ËùÓĞ¿ÉÓÃµÄ¹«ÖÚºÅµÄ»ù±¾ĞÅÏ¢
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½Ğ¿ï¿½ï¿½ÃµÄ¹ï¿½ï¿½ÚºÅµÄ»ï¿½ï¿½ï¿½Ï¢
 	 * @return mixed
 	 */
 	private function getWeiInfoByName($userName){
@@ -106,7 +108,7 @@ class loginModel{
 	}
 
 	/**
-	 * È¡µÃ¸Ã¹«ÖÚºÅÉèÖÃµÄ»î¶¯listÒ»ÀÀ
+	 * È¡ï¿½Ã¸Ã¹ï¿½ï¿½Úºï¿½ï¿½ï¿½ï¿½ÃµÄ»î¶¯listÒ»ï¿½ï¿½
 	 * @param $weiID
 	 * @return mixed
 	 */

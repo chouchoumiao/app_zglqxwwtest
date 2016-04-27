@@ -1,24 +1,24 @@
 <?php
 	function C($name, $method){
-		require_once('/libs/controller/'.$name.'Controller.class.php');
+		require_once('./libs/controller/'.$name.'Controller.class.php');
 		eval('$obj = new '.$name.'Controller();$obj->'.$method.'();');
 	}
 
 	function M($name){
-		require_once('/libs/Model/'.$name.'Model.class.php');
+		require_once('./libs/Model/'.$name.'Model.class.php');
 		//$testModel = new testModel();
 		eval('$obj = new '.$name.'Model();');
 		return $obj;
 	}
 	
 	function V($name){
-		require_once('/libs/View/'.$name.'View.class.php');
+		require_once('./libs/View/'.$name.'View.class.php');
 		//$testView = new testView();
 		eval('$obj = new '.$name.'View();');
 		return $obj;
 	}
 	
-	function ORG($path, $name, $params=array()){// path ÊÇÂ·¾¶  nameÊÇµÚÈý·½ÀàÃû params ÊÇ¸ÃÀà³õÊ¼»¯µÄÊ±ºòÐèÒªÖ¸¶¨¡¢¸³ÖµµÄÊôÐÔ£¬¸ñÊ½Îª array(ÊôÐÔÃû=>ÊôÐÔÖµ, ÊôÐÔÃû2=>ÊôÐÔÖµ2¡­¡­)
+	function ORG($path, $name, $params=array()){// path ï¿½ï¿½Â·ï¿½ï¿½  nameï¿½Çµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ params ï¿½Ç¸ï¿½ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ÒªÖ¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½Ô£ï¿½ï¿½ï¿½Ê½Îª array(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½=>ï¿½ï¿½ï¿½ï¿½Öµ, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½2=>ï¿½ï¿½ï¿½ï¿½Öµ2ï¿½ï¿½ï¿½ï¿½)
 		require_once('libs/ORG/'.$path.$name.'.class.php');
 		//eval('$obj = new '.$name.'();');
 		$obj = new $name();
@@ -37,7 +37,7 @@
 
 function getConfigWithMMC($weixinID)
 {
-	//È¡µÃconfigµÄÊý¾Ý²¢´æÈë»º´æ
+	//È¡ï¿½ï¿½configï¿½ï¿½ï¿½ï¿½Ý²ï¿½ï¿½ï¿½ï¿½ë»ºï¿½ï¿½
 	$sql = "select CONFIG_INTEGRALINSERT,
 				   CONFIG_INTEGRAL_REFERRER_FOR_NEW_VIP,
 				   CONFIG_INTEGRALREFERRER,
@@ -47,7 +47,7 @@ function getConfigWithMMC($weixinID)
 			where WEIXIN_ID = $weixinID";
 	$configLineData = DB::findOne($sql);
 
-	//Èç¹ûÈ¡µÃ²»´æÔÚ Ôò³õÊ¼»¯Îª 0,0,0,0,0,'»ý·Ö'
+	//ï¿½ï¿½ï¿½È¡ï¿½Ã²ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ê¼ï¿½ï¿½Îª 0,0,0,0,0,'ï¿½ï¿½ï¿½'
 	if (!$configLineData) {
 		$sql = "insert into ConfigSet
 							(WEIXIN_ID,
@@ -64,7 +64,7 @@ function getConfigWithMMC($weixinID)
 							0,
 							0,
 							0,
-							'»ý·Ö'
+							'ï¿½ï¿½ï¿½'
 							)";
 		$isOK = DB::query($sql);
 		if (!$isOK) {
@@ -74,7 +74,7 @@ function getConfigWithMMC($weixinID)
 				"CONFIG_INTEGRALREFERRER" => 0,
 				"CONFIG_INTEGRALSETDAILY" => 0,
 				"CONFIG_DAILYPLUS" => 0,
-				"CONFIG_VIP_NAME" => '»ý·Ö'
+				"CONFIG_VIP_NAME" => 'ï¿½ï¿½ï¿½'
 			);
 		} else {
 			return array();
@@ -84,7 +84,7 @@ function getConfigWithMMC($weixinID)
 }
 
 /**
- * Ìø×ªº¯Êý
+ * ï¿½ï¿½×ªï¿½ï¿½ï¿½ï¿½
  * @param $url
  */
 function gotoUrl($url){
@@ -93,7 +93,7 @@ function gotoUrl($url){
 }
 
 
-//»ñÈ¡IPµØÖ·
+//ï¿½ï¿½È¡IPï¿½ï¿½Ö·
 function GetIP()
 {
 	$unknown = 'unknown';
@@ -103,10 +103,10 @@ function GetIP()
 		$ip = $_SERVER['REMOTE_ADDR'];
 	}
 	/**
-	 * ´¦Àí¶à²ã´úÀíµÄÇé¿ö
-	 * »òÕßÊ¹ÓÃÕýÔò·½Ê½£º$ip = <a href="https://www.baidu.com/s?wd=preg_match&tn=44039180_cpr&fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1d9mHf1m1Pbm1bsnj61PHcs0AP8IA3qPjfsn1bkrjKxmLKz0ZNzUjdCIZwsrBtEXh9GuA7EQhF9pywdQhPEUiqkIyN1IA-EUBt1PWDvnWRdPWcvn10drjD3PHc" target="_blank" class="baidu-highlight">preg_match</a>("/[\d\.]{7,15}/", $ip, $matches) ? $matches[0] : $unknown;
+	 * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	 * ï¿½ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½$ip = <a href="https://www.baidu.com/s?wd=preg_match&tn=44039180_cpr&fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1d9mHf1m1Pbm1bsnj61PHcs0AP8IA3qPjfsn1bkrjKxmLKz0ZNzUjdCIZwsrBtEXh9GuA7EQhF9pywdQhPEUiqkIyN1IA-EUBt1PWDvnWRdPWcvn10drjD3PHc" target="_blank" class="baidu-highlight">preg_match</a>("/[\d\.]{7,15}/", $ip, $matches) ? $matches[0] : $unknown;
 	 */
-	//ÐÞ¸Ä×·¼Ó±äÁ¿À´½ÓÊÜ£¬È¥³ý¾¯¸æ 20160312
+	//ï¿½Þ¸ï¿½×·ï¿½Ó±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ü£ï¿½È¥ï¿½ï¿½ï¿½ 20160312
 	$tmp1 = strpos($ip, ',');
 	if (false !== $tmp1) {
 		$tmp2 = explode(',', $ip);
@@ -115,9 +115,9 @@ function GetIP()
 	return $ip;
 }
 
-//·­Ò³
+//ï¿½ï¿½Ò³
 
-//·ÖÒ³
+//ï¿½ï¿½Ò³
 function multi($num, $perpage, $curpage, $mpurl, $ajax=0, $ajax_f='',$flag='') {
 
 
@@ -154,7 +154,7 @@ function multi($num, $perpage, $curpage, $mpurl, $ajax=0, $ajax_f='',$flag='') {
 			} else {
 				$multipage .= "href=\"{$mpurl}page=1{$urlplus}\"";
 			}
-			$multipage .= " class=\"first\">Ê×</a>";
+			$multipage .= " class=\"first\">ï¿½ï¿½</a>";
 		}
 		if($curpage > 1) {
 			$multipage .= "<a ";
@@ -203,7 +203,7 @@ function multi($num, $perpage, $curpage, $mpurl, $ajax=0, $ajax_f='',$flag='') {
 	return $multipage;
 }
 
-//ÅÐ¶ÏÊäÈëdataÊÇ·ñÎª¿Õ
+//ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½dataï¿½Ç·ï¿½Îªï¿½ï¿½
 function strIsNull($data,$message)
 {
 	if($data==='')
@@ -214,7 +214,7 @@ function strIsNull($data,$message)
 	}
 }
 
-//ÅÐ¶ÏÊäÈëdataÊÇ·ñÎª¿Õ£¬ÒÑ¾­ÊÇ·ñÊý×Ö
+//ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½dataï¿½Ç·ï¿½Îªï¿½Õ£ï¿½ï¿½Ñ¾ï¿½ï¿½Ç·ï¿½ï¿½ï¿½ï¿½ï¿½
 function isNum($data,$message1,$message2)
 {
 	if($data === '')
@@ -229,18 +229,18 @@ function isNum($data,$message1,$message2)
 }
 
 
-//ÅÐ¶ÏÊäÈëdataÊÇ·ñÊÇfromdataºÍtodata·¶Î§ÄÚµÄÊý¾Ý  -by 20150320
+//ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½ï¿½dataï¿½Ç·ï¿½ï¿½ï¿½fromdataï¿½ï¿½todataï¿½ï¿½Î§ï¿½Úµï¿½ï¿½ï¿½ï¿½  -by 20150320
 function isThisRangeNum($data,$fromdata,$todata,$message)
 {
 	//echo "<script>alert('$message');history.back();</Script>";
 	if(($data < $fromdata)||($data > $todata))
 	{
-		echo "<script>alert('±ØÐëÊÇ'+$fromdata+'µ½'+$todata+'·¶Î§ÄÚµÄÊý×Ö');history.back();</Script>";
+		echo "<script>alert('ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'+$fromdata+'ï¿½ï¿½'+$todata+'ï¿½ï¿½Î§ï¿½Úµï¿½ï¿½ï¿½ï¿½ï¿½');history.back();</Script>";
 		exit;
 	}
 }
 
-//±È½Ïdate1£¬date2Ïà²îµÄÌìÊý
+//ï¿½È½ï¿½date1ï¿½ï¿½date2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 function dateDiffer($date1,$date2,$message)
 {
 	if((strtotime($date1) - strtotime($date2))/86400 < 0){
@@ -249,7 +249,7 @@ function dateDiffer($date1,$date2,$message)
 	}
 }
 
-//ÅÐ¶ÏdateÊÇ·ñÎªÈÕÆÚ¸ñÊ½
+//ï¿½Ð¶ï¿½dateï¿½Ç·ï¿½Îªï¿½ï¿½ï¿½Ú¸ï¿½Ê½
 function isDateOrNot($data,$message)
 {
 	if(!isdate($data))
@@ -259,7 +259,7 @@ function isDateOrNot($data,$message)
 
 	}
 }
-//ÅÐ¶ÏÈÕÆÚ¸ñÊ½×Óº¯Êý
+//ï¿½Ð¶ï¿½ï¿½ï¿½ï¿½Ú¸ï¿½Ê½ï¿½Óºï¿½ï¿½ï¿½
 function isdate($str,$format="Y-m-d"){
 	$strArr = explode("-",$str);
 	if(empty($strArr)){
@@ -280,13 +280,13 @@ function isdate($str,$format="Y-m-d"){
 		return false;
 }
 
-//»ñÈ¡ÓÃ»§ÕæÊµIP
+//ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½ÊµIP
 function get_client_ip() {
 	$ip=$_SERVER["REMOTE_ADDR"];
 	return $ip;
 }
 
-//ÅÐ¶ÏÊÇ·ñÊÇ»áÔ±£¬²»ÊÇÔòÌø×ªµ½×¢²áÒ³Ãæ
+//ï¿½Ð¶ï¿½ï¿½Ç·ï¿½ï¿½Ç»ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½×¢ï¿½ï¿½Ò³ï¿½ï¿½
 function isVipByOpenid($openid,$weixinID,$nowUrl){
 	if(!isset($openid) || !isset($weixinID)){
 		echo "OpenID OR  WeixinID Error";
@@ -301,7 +301,7 @@ function isVipByOpenid($openid,$weixinID,$nowUrl){
 	}
 }
 
-//Éú³Étokenº¯Êý
+//ï¿½ï¿½ï¿½tokenï¿½ï¿½ï¿½ï¿½
 function getToken( $len = 32, $md5 = true ) {
 	# Seed random number generator
 	# Only needed for PHP versions prior to 4.2
@@ -335,7 +335,7 @@ function getToken( $len = 32, $md5 = true ) {
 	return $token;
 }
 
-//Êä³öHTMLµÄWarning
+//ï¿½ï¿½ï¿½HTMLï¿½ï¿½Warning
 function echoWarning($msg){
 	echo '<html>
         <head>
@@ -354,7 +354,7 @@ function echoWarning($msg){
     </html>';
 }
 
-//Êä³öHTMLµÄInfo
+//ï¿½ï¿½ï¿½HTMLï¿½ï¿½Info
 function echoInfo($msg){
 	echo '<html>
         <head>
@@ -374,10 +374,10 @@ function echoInfo($msg){
 }
 
 /* *
-* ¶Ô±äÁ¿½øÐÐ JSON ±àÂë
-* @param mixed value ´ý±àÂëµÄ value £¬³ýÁËresource ÀàÐÍÖ®Íâ£¬¿ÉÒÔÎªÈÎºÎÊý¾ÝÀàÐÍ£¬¸Ãº¯ÊýÖ»ÄÜ½ÓÊÜ UTF-8 ±àÂëµÄÊý¾Ý
-* @return string ·µ»Ø value ÖµµÄ JSON ÐÎÊ½
-* PHP 5.4°æ±¾ºóÖ±½Ó¼Ó  JSON_UNESCAPED_UNICODE ¹Ø¼ü×Ö
+* ï¿½Ô±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ JSON ï¿½ï¿½ï¿½ï¿½
+* @param mixed value ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ value ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½resource ï¿½ï¿½ï¿½ï¿½Ö®ï¿½â£¬ï¿½ï¿½ï¿½ï¿½Îªï¿½Îºï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Í£ï¿½ï¿½Ãºï¿½ï¿½ï¿½Ö»ï¿½Ü½ï¿½ï¿½ï¿½ UTF-8 ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+* @return string ï¿½ï¿½ï¿½ï¿½ value Öµï¿½ï¿½ JSON ï¿½ï¿½Ê½
+* PHP 5.4ï¿½æ±¾ï¿½ï¿½Ö±ï¿½Ó¼ï¿½  JSON_UNESCAPED_UNICODE ï¿½Ø¼ï¿½ï¿½ï¿½
 *
 */
 function getPreg_replace( $value)
@@ -400,31 +400,31 @@ function getPreg_replace( $value)
 		return json_encode( $value, JSON_UNESCAPED_UNICODE);
 	}
 }
-//ÓÃÓÚjsonÎÄ×Ö×ª»¯
+//ï¿½ï¿½ï¿½ï¿½jsonï¿½ï¿½ï¿½ï¿½×ªï¿½ï¿½
 //function getPreg_replace($arr){
 //    return preg_replace("#\\\u([0-9a-f]{4})#ie", "iconv('UCS-2BE', 'UTF-8', pack('H4', '\\1'))", json_encode($arr));
 //}
 
-//URLµØÖ·²ÎÊý¼ÓÃÜ
+//URLï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 function myURLEncode($str){
 	return base64_encode(base64_encode($str));
 }
 
-//URLµØÖ·²ÎÊý½âÃÜ
+//URLï¿½ï¿½Ö·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 function myURLDecode($str){
 	return base64_decode(base64_decode($str));
 }
 
-//´«Èë²ÎÊý ³¤¶ÈÅÐ¶Ï
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
 function isParameterOK($p,$len){
 	if(!isset($p) || strlen($p) != $len){
-		echo "´«Èë²ÎÊý²»ÕýÈ·£¬ÇëÈ·ÈÏ£¡";
+		echo "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È·ï¿½ï¿½ï¿½ï¿½È·ï¿½Ï£ï¿½";
 		exit;
 	}
 }
 
-//´«Èë²ÎÊýOpenIDºÍWeixinID ³¤¶ÈÅÐ¶Ï
-//openid¹Ì¶¨³¤£º28,weixinID¹Ì¶¨³¤£º2
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½OpenIDï¿½ï¿½WeixinID ï¿½ï¿½ï¿½ï¿½ï¿½Ð¶ï¿½
+//openidï¿½Ì¶ï¿½ï¿½ï¿½ï¿½ï¿½28,weixinIDï¿½Ì¶ï¿½ï¿½ï¿½ï¿½ï¿½2
 function isOpenIDWeixinIDOK($openid,$weixinID,$msg){
 	if(!isset($openid) || !isset($weixinID) || strlen($openid) != 28 || strlen($weixinID) != 2){
 		echo '<html>
