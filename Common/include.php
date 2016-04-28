@@ -1,7 +1,6 @@
 <?php
 /**
- * Created by wujiayu.
- * User: ���������ҹ�����
+ * Created by wujiayu
  * Date: 2016/3/7
  * Time: 17:26
  */

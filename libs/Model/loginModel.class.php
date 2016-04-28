@@ -2,7 +2,7 @@
 class loginModel{
 
 	/**
-	 * �ж��û�����
+	 * 判断用户密码
 	 * @param $username
 	 * @param $password
 	 * @return bool
@@ -18,7 +18,7 @@ class loginModel{
 	}
 
 	/**
-	 * ���¸��û��ĵ�¼��Ϣ
+	 * 更新改用户的登录信息
 	 * @param $auth
 	 */
 	function updateAdminInfo($auth){
@@ -35,12 +35,12 @@ class loginModel{
 	}
 
 	/**
-	 * ��ʾ��ҳ���������Ϣ
+	 * 显示主页面的所有信息
 	 * @return array
 	 */
 	function showMain($name){
 
-		//��ʼ�����ֶ�
+		//初始化各字段
 		$weixinName = '';
 		$isWeixinInfoExist = false;
 		$isEventListExist = false;
@@ -50,17 +50,17 @@ class loginModel{
 		$eventUrlArr = array();
 		$thisWeixinID = '';
 
-		//��ȡ���û����п��õĹ��ںŵĻ���Ϣ
+		//获取该用户所有可用的公众号的基本信息
 		$weixinInfo = $this->getWeiInfoByName($name);
 
-		//�жϸ��û��Ƿ���ڿ����õĹ��ں�
+		//锟叫断革拷锟矫伙拷锟角凤拷锟斤拷诳锟斤拷锟斤拷玫墓锟斤拷诤锟�
 		if(empty($weixinInfo)){
-			$msg = "��ǰδ���ù��ںţ�����ӹ��ں���Ϣ��";
+			$msg = '当前未设置过公众号，请添加公众号信息！';
 		}else{
 			$isWeixinInfoExist = true;
 			if(!isset($_SESSION['weixinID'])){
 				$thisWeixinID = $weixinInfo[0]['id'];
-				//追加session中的weixinID
+				//登录时追加weixinID的session数值
 				$_SESSION['weixinID'] = $thisWeixinID;
 			}else{
 				$thisWeixinID = $_SESSION['weixinID'];
@@ -78,7 +78,7 @@ class loginModel{
 			}
 		}
 
-		//���������Ϣ
+		//返回相关信息
 		return array(
 			'eventNameArr'=>$eventNameArr,
 			'eventUrlArr'=>$eventUrlArr,
@@ -93,7 +93,7 @@ class loginModel{
 	}
 
 	/**
-	 * ��ȡ���û����п��õĹ��ںŵĻ���Ϣ
+	 * 获取该用户所有可用的公众号的基本信息
 	 * @return mixed
 	 */
 	private function getWeiInfoByName($userName){
@@ -108,7 +108,7 @@ class loginModel{
 	}
 
 	/**
-	 * ȡ�øù��ں����õĻlistһ��
+	 * 取得该公众号设置的活动list一览
 	 * @param $weiID
 	 * @return mixed
 	 */

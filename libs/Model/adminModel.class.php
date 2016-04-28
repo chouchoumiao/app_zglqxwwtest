@@ -10,19 +10,19 @@ class adminModel extends commonModel{
 	}
 
 	/**
-	 * ¸ù¾İ·ÖÒ³È¡µÃËùÓĞºóÌ¨ÓÃ»§ĞÅÏ¢
+	 * æ ¹æ®åˆ†é¡µå–å¾—æ‰€æœ‰åå°ç”¨æˆ·ä¿¡æ¯
 	 * public
 	 * @return array
 	 */
 	function getUserByAdmin(){
-		//È¡µÃËùÓÃÓÃ»§µÄ×ÜÊı
+		//å–å¾—æ‰€ç”¨ç”¨æˆ·çš„æ€»æ•°
 		$count = $this->getUserCountByAdmin();
-		//Èç¹ûÊı¾İ±íÀïÓĞÊı¾İ
+		//å¦‚æœæ•°æ®è¡¨é‡Œæœ‰æ•°æ®
 		if($count){
-			//Ã¿Ò³ÏÔÊ¾¼ÇÂ¼Êı
-			$multiArr = parent::getMulti(); //È¡µÃ·ÖÒ³ĞÅÏ¢(¹«¹²ModelÀàÀï³éÈ¡)
+			//æ¯é¡µæ˜¾ç¤ºè®°å½•æ•°
+			$multiArr = parent::getMulti(); //å–å¾—åˆ†é¡µä¿¡æ¯(å…¬å…±Modelç±»é‡ŒæŠ½å–)
 
-			$class_list = $this->getUserWithMulti($multiArr); //¸ù¾İ·ÖÒ³ĞÅÏ¢È¡µÃÏà¹ØÈËÔ±ĞÅÏ¢
+			$class_list = $this->getUserWithMulti($multiArr); //æ ¹æ®åˆ†é¡µä¿¡æ¯å–å¾—ç›¸å…³äººå‘˜ä¿¡æ¯
 			$retArr = array(
 				'count' => $count,
 				'page_num' => $multiArr['showCount'],
@@ -37,7 +37,7 @@ class adminModel extends commonModel{
 	}
 
 	/**
-	 * È¡µÃËùÓÃÓÃ»§µÄ×ÜÊı
+	 * å–å¾—æ‰€ç”¨ç”¨æˆ·çš„æ€»æ•°
 	 * private
 	 * @return mixed
 	 */
@@ -47,14 +47,14 @@ class adminModel extends commonModel{
 	}
 
 	/**
-	 * ¸ù¾İ·ÖÒ³ĞÅÏ¢È¡µÃÏà¹ØÈËÔ±ĞÅÏ¢
+	 * æ ¹æ®åˆ†é¡µä¿¡æ¯å–å¾—ç›¸å…³äººå‘˜ä¿¡æ¯
 	 * private
 	 * @param $arr
 	 * @return mixed
 	 */
 	private function getUserWithMulti($arr){
 
-		//»ñÈ¡·ûºÏÌõ¼şµÄÊı¾İ
+		//è·å–ç¬¦åˆæ¡ä»¶çš„æ•°æ®
 		$sql = "select * from AdminUser
 					where isdeleted = 0
 					order by id asc

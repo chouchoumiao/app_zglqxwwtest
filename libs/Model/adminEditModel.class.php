@@ -36,7 +36,7 @@ class adminEditModel{
 	}
 
 	private function newPassEdit($post,$user){
-		//取得set页面传递过来的数据
+		//鍙栧緱set椤甸潰浼犻�掕繃鏉ョ殑鏁版嵁
 		$newPass = addslashes($post["newPass"]);
 
 		$md5NewPass = md5($newPass);
@@ -55,7 +55,7 @@ class adminEditModel{
 	}
 
 	private function addUserByAdmin($post){
-		//取得set页面传递过来的数据
+		//鍙栧緱set椤甸潰浼犻�掕繃鏉ョ殑鏁版嵁
 		$addUser = addslashes($post["addUser"]);
 
 		$sql = "select * from AdminUser

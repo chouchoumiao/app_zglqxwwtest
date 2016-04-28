@@ -13,20 +13,20 @@ class forSearchInfoModel extends commonModel{
 	}
 
 	function getVipList(){
-		//ȡ�û�Ա�û�������    ---------
+		//取得会员用户的总数
 		$count = $this->getVipCount();
-		//�����ݱ��������
+		//如果数据表里有数据
 		if($count){
-			//ÿҳ��ʾ��¼��
-			$multiArr = parent::getMulti();
+			//每页显示记录数
+			$multiArr = parent::getMulti(); //取得分页信息(公共Model类里抽取)
 
-			$class_list = $this->getVipWithMulti($multiArr);
+			$class_list = $this->getVipWithMulti($multiArr); //根据分页信息取得会员人员信息
 
 			for($i = 0; $i<count($class_list); $i++){
 				if($class_list[$i]['Vip_sex'] == 1){
 					$class_list[$i]['Vip_sex'] = '男';
 				}elseif($class_list[$i]['Vip_sex'] == 0){
-					$class_list[$i]['Vip_sex'] == '男';
+					$class_list[$i]['Vip_sex'] == '女';
 				}else{
 					$class_list[$i]['Vip_sex'] == '未知';
 				}
@@ -46,7 +46,7 @@ class forSearchInfoModel extends commonModel{
 
 
 	/**
-	 * ȡ�������û�������
+	 * 取得所用用户的总数
 	 * private
 	 * @return mixed
 	 */
@@ -57,13 +57,13 @@ class forSearchInfoModel extends commonModel{
 
 
 	/**
-	 * ��ݷ�ҳ��Ϣȡ����ػ�Ա��Ϣ
+	 * 根据分页信息取得相关会员信息
 	 * private
 	 * @param $arr
 	 * @return mixed
 	 */
 	private function getVipWithMulti($arr){
-		//��ȡ������������
+		//获取符合条件的数据
 		$sql = "select * from Vip
 				where WEIXIN_ID = $this->weixinID
 				AND Vip_isDeleted = 0

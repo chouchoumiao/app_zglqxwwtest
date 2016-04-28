@@ -18,7 +18,7 @@
 		return $obj;
 	}
 	
-	function ORG($path, $name, $params=array()){// path ��·��  name�ǵ������� params �Ǹ����ʼ����ʱ����Ҫָ������ֵ�����ԣ���ʽΪ array(������=>����ֵ, ������2=>����ֵ2����)
+	function ORG($path, $name, $params=array()){// path 是路径  name是第三方类名 params 是该类初始化的时候需要指定、赋值的属性，格式为 array(属性名=>属性值, 属性名2=>属性值2……)
 		require_once('libs/ORG/'.$path.$name.'.class.php');
 		//eval('$obj = new '.$name.'();');
 		$obj = new $name();
@@ -37,7 +37,7 @@
 
 function getConfigWithMMC($weixinID)
 {
-	//ȡ��config����ݲ����뻺��
+	//取得config的数据并存入缓存
 	$sql = "select CONFIG_INTEGRALINSERT,
 				   CONFIG_INTEGRAL_REFERRER_FOR_NEW_VIP,
 				   CONFIG_INTEGRALREFERRER,
@@ -47,7 +47,7 @@ function getConfigWithMMC($weixinID)
 			where WEIXIN_ID = $weixinID";
 	$configLineData = DB::findOne($sql);
 
-	//���ȡ�ò����� ���ʼ��Ϊ 0,0,0,0,0,'���'
+	//如果取得不存在 则初始化为 0,0,0,0,0,'积分'
 	if (!$configLineData) {
 		$sql = "insert into ConfigSet
 							(WEIXIN_ID,
@@ -64,7 +64,7 @@ function getConfigWithMMC($weixinID)
 							0,
 							0,
 							0,
-							'���'
+							'积分'
 							)";
 		$isOK = DB::query($sql);
 		if (!$isOK) {
@@ -74,7 +74,7 @@ function getConfigWithMMC($weixinID)
 				"CONFIG_INTEGRALREFERRER" => 0,
 				"CONFIG_INTEGRALSETDAILY" => 0,
 				"CONFIG_DAILYPLUS" => 0,
-				"CONFIG_VIP_NAME" => '���'
+				"CONFIG_VIP_NAME" => '积分'
 			);
 		} else {
 			return array();
@@ -84,7 +84,7 @@ function getConfigWithMMC($weixinID)
 }
 
 /**
- * ��ת����
+ * 跳转函数
  * @param $url
  */
 function gotoUrl($url){
@@ -93,7 +93,7 @@ function gotoUrl($url){
 }
 
 
-//��ȡIP��ַ
+//获取IP地址
 function GetIP()
 {
 	$unknown = 'unknown';
@@ -103,10 +103,14 @@ function GetIP()
 		$ip = $_SERVER['REMOTE_ADDR'];
 	}
 	/**
-	 * �������������
-	 * ����ʹ������ʽ��$ip = <a href="https://www.baidu.com/s?wd=preg_match&tn=44039180_cpr&fenlei=mv6quAkxTZn0IZRqIHckPjm4nH00T1d9mHf1m1Pbm1bsnj61PHcs0AP8IA3qPjfsn1bkrjKxmLKz0ZNzUjdCIZwsrBtEXh9GuA7EQhF9pywdQhPEUiqkIyN1IA-EUBt1PWDvnWRdPWcvn10drjD3PHc" target="_blank" class="baidu-highlight">preg_match</a>("/[\d\.]{7,15}/", $ip, $matches) ? $matches[0] : $unknown;
+	 * 处理多层代理的情况
+	 * 或者使用正则方式：$ip = <a href="https://www.baidu.com/s?wd=preg_match&tn=44039180_cpr&fenlei=
+	 * mv6quAkxTZn0IZRqIHckPjm4nH00T1d9mHf1m1Pbm1bsnj61PHcs0AP8IA3qPjfsn1bkrjKxm
+	 * LKz0ZNzUjdCIZwsrBtEXh9GuA7EQhF9pywdQhPEUiqkIyN1IA-EUBt1PWDvnWRdPWcvn10drjD3PHc"
+	 * target="_blank" class="baidu-highlight">preg_match</a>("/[\d\.]{7,15}/",
+	 * $ip, $matches) ? $matches[0] : $unknown;
 	 */
-	//�޸�׷�ӱ��������ܣ�ȥ��� 20160312
+	//修改追加变量来接受，去除警告 20160312
 	$tmp1 = strpos($ip, ',');
 	if (false !== $tmp1) {
 		$tmp2 = explode(',', $ip);
@@ -115,106 +119,17 @@ function GetIP()
 	return $ip;
 }
 
-//��ҳ
-
-//��ҳ
-function multi($num, $perpage, $curpage, $mpurl, $ajax=0, $ajax_f='',$flag='') {
-
-
-	$page = 5;
-	$multipage = '';
-	$mpurl .= strpos($mpurl, '?') ? '&' : '?';
-	$realpages = 1;
-	if($num > $perpage) {
-		$offset = 2;
-		$realpages = @ceil($num / $perpage);
-		$pages = $realpages;
-		if($page > $pages) {
-			$from = 1;
-			$to = $pages;
-		} else {
-			$from = $curpage - $offset;
-			$to = $from + $page - 1;
-			if($from < 1) {
-				$to = $curpage + 1 - $from;
-				$from = 1;
-				if($to - $from < $page) {
-					$to = $page;
-				}
-			} elseif($to > $pages) {
-				$from = $pages - $page + 1;
-				$to = $pages;
-			}
-		}
-		$multipage = '';
-		if($curpage - $offset > 1 && $pages > $page) {
-			$multipage .= "<a ";
-			if($ajax) {
-				$multipage .= "href=\"javascript:{$ajax_f}($flag,1);\"";
-			} else {
-				$multipage .= "href=\"{$mpurl}page=1{$urlplus}\"";
-			}
-			$multipage .= " class=\"first\">��</a>";
-		}
-		if($curpage > 1) {
-			$multipage .= "<a ";
-			if($ajax) {
-				$multipage .= "href=\"javascript:{$ajax_f}($flag,".($curpage-1).");\" ";
-			} else {
-				$multipage .= "href=\"{$mpurl}page=".($curpage-1)."$urlplus\"";
-			}
-			$multipage .= " class=\"prev\">&lt;&lt; </a>";
-		}
-		for($i = $from; $i <= $to; $i++) {
-			if($i == $curpage) {
-				$multipage .= '<a href="###" class="cur">'.$i.'</strong>';
-			} else {
-				$multipage .= "<a ";
-				if($ajax) {
-					$multipage .= "href=\"javascript:{$ajax_f}($flag,$i);\" ";
-				} else {
-					$multipage .= "href=\"{$mpurl}page=$i{$urlplus}\"";
-				}
-				$multipage .= ">&nbsp$i&nbsp</a>";
-			}
-		}
-		if($curpage < $pages) {
-			$multipage .= "<a ";
-			if($ajax) {
-				$multipage .= "href=\"javascript:{$ajax_f}($flag,".($curpage+1).");\" ";
-			} else {
-				$multipage .= "href=\"{$mpurl}page=".($curpage+1)."{$urlplus}\"";
-			}
-			$multipage .= " class=\"next\"> &gt;&gt;</a>";
-		}
-		if($to < $pages) {
-			$multipage .= "<a ";
-			if($ajax) {
-				$multipage .= "href=\"javascript:{$ajax_f}($flag,$pages);\" ";
-			} else {
-				$multipage .= "href=\"{$mpurl}page=$pages{$urlplus}\"";
-			}
-			$multipage .= " class=\"last\">β</a>";
-		}
-		if($multipage) {
-			//$multipage = '<em>&nbsp;'.$num.'&nbsp;</em>'.$multipage;
-		}
-	}
-	return $multipage;
-}
-
-//�ж�����data�Ƿ�Ϊ��
+//判断输入data是否为空
 function strIsNull($data,$message)
 {
 	if($data==='')
 	{
 		echo "<script>alert('$message');history.back();</Script>";
 		exit;
-
 	}
 }
 
-//�ж�����data�Ƿ�Ϊ�գ��Ѿ��Ƿ�����
+//判断输入data是否为空，以及是否数字
 function isNum($data,$message1,$message2)
 {
 	if($data === '')
@@ -228,19 +143,7 @@ function isNum($data,$message1,$message2)
 	}
 }
 
-
-//�ж�����data�Ƿ���fromdata��todata��Χ�ڵ����  -by 20150320
-function isThisRangeNum($data,$fromdata,$todata,$message)
-{
-	//echo "<script>alert('$message');history.back();</Script>";
-	if(($data < $fromdata)||($data > $todata))
-	{
-		echo "<script>alert('������'+$fromdata+'��'+$todata+'��Χ�ڵ�����');history.back();</Script>";
-		exit;
-	}
-}
-
-//�Ƚ�date1��date2��������
+//比较date1，date2相差的天数
 function dateDiffer($date1,$date2,$message)
 {
 	if((strtotime($date1) - strtotime($date2))/86400 < 0){
@@ -249,7 +152,7 @@ function dateDiffer($date1,$date2,$message)
 	}
 }
 
-//�ж�date�Ƿ�Ϊ���ڸ�ʽ
+//判断date是否为日期格式
 function isDateOrNot($data,$message)
 {
 	if(!isdate($data))
@@ -259,7 +162,7 @@ function isDateOrNot($data,$message)
 
 	}
 }
-//�ж����ڸ�ʽ�Ӻ���
+//判断日期格式子函数
 function isdate($str,$format="Y-m-d"){
 	$strArr = explode("-",$str);
 	if(empty($strArr)){
@@ -280,13 +183,13 @@ function isdate($str,$format="Y-m-d"){
 		return false;
 }
 
-//��ȡ�û���ʵIP
+//获取用户真实IP
 function get_client_ip() {
 	$ip=$_SERVER["REMOTE_ADDR"];
 	return $ip;
 }
 
-//�ж��Ƿ��ǻ�Ա����������ת��ע��ҳ��
+//判断是否是会员，不是则跳转到注册页面
 function isVipByOpenid($openid,$weixinID,$nowUrl){
 	if(!isset($openid) || !isset($weixinID)){
 		echo "OpenID OR  WeixinID Error";
@@ -301,7 +204,7 @@ function isVipByOpenid($openid,$weixinID,$nowUrl){
 	}
 }
 
-//���token����
+//生成token函数
 function getToken( $len = 32, $md5 = true ) {
 	# Seed random number generator
 	# Only needed for PHP versions prior to 4.2
@@ -335,7 +238,7 @@ function getToken( $len = 32, $md5 = true ) {
 	return $token;
 }
 
-//���HTML��Warning
+//输出HTML的Warning
 function echoWarning($msg){
 	echo '<html>
         <head>
@@ -354,7 +257,7 @@ function echoWarning($msg){
     </html>';
 }
 
-//���HTML��Info
+//输出HTML的Info
 function echoInfo($msg){
 	echo '<html>
         <head>
@@ -374,10 +277,10 @@ function echoInfo($msg){
 }
 
 /* *
-* �Ա������� JSON ����
-* @param mixed value ������ value ������resource ����֮�⣬����Ϊ�κ�������ͣ��ú���ֻ�ܽ��� UTF-8 ��������
-* @return string ���� value ֵ�� JSON ��ʽ
-* PHP 5.4�汾��ֱ�Ӽ�  JSON_UNESCAPED_UNICODE �ؼ���
+* 对变量进行 JSON 编码
+* @param mixed value 待编码的 value ，除了resource 类型之外，可以为任何数据类型，该函数只能接受 UTF-8 编码的数据
+* @return string 返回 value 值的 JSON 形式
+* PHP 5.4版本后直接加  JSON_UNESCAPED_UNICODE 关键字
 *
 */
 function getPreg_replace( $value)
@@ -400,31 +303,27 @@ function getPreg_replace( $value)
 		return json_encode( $value, JSON_UNESCAPED_UNICODE);
 	}
 }
-//����json����ת��
-//function getPreg_replace($arr){
-//    return preg_replace("#\\\u([0-9a-f]{4})#ie", "iconv('UCS-2BE', 'UTF-8', pack('H4', '\\1'))", json_encode($arr));
-//}
 
-//URL��ַ�������
+//URL地址参数加密
 function myURLEncode($str){
 	return base64_encode(base64_encode($str));
 }
 
-//URL��ַ�������
+//URL地址参数解密
 function myURLDecode($str){
 	return base64_decode(base64_decode($str));
 }
 
-//������� �����ж�
+//传入参数 长度判断
 function isParameterOK($p,$len){
 	if(!isset($p) || strlen($p) != $len){
-		echo "���������ȷ����ȷ�ϣ�";
+		echo "传入参数不正确，请确认！";
 		exit;
 	}
 }
 
-//�������OpenID��WeixinID �����ж�
-//openid�̶�����28,weixinID�̶�����2
+//传入参数OpenID和WeixinID 长度判断
+//openid固定长：28,weixinID固定长：2
 function isOpenIDWeixinIDOK($openid,$weixinID,$msg){
 	if(!isset($openid) || !isset($weixinID) || strlen($openid) != 28 || strlen($weixinID) != 2){
 		echo '<html>

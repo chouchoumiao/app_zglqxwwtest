@@ -10,7 +10,7 @@ class commonModel
 {
 
     /**
-     * 取得分页信息
+     * 鍙栧緱鍒嗛〉淇℃伅
      * private
      * @return array
      */
@@ -28,7 +28,7 @@ class commonModel
         return array(
             'page' => $page,
             'showCount' =>$showCount,
-            'from_record' =>($page - 1) * $showCount  //计算开始的记录序号
+            'from_record' =>($page - 1) * $showCount  //璁＄畻寮�濮嬬殑璁板綍搴忓彿
         );
     }
 

@@ -5,7 +5,7 @@ $config = array(
 		'right_delimiter' => '}',
 		'template_dir' => 'tpl',
 		'compile_dir' => 'data/template_c',
-		'caching' => false   //È¥³ý»º´æ
+		'caching' => false   //åŽ»é™¤ç¼“å­˜
 	),
 	'dbconfig' => array(
 		'dbhost' => 'localhost',
