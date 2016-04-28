@@ -62,6 +62,7 @@ class adminController{
 	public function logout(){
 		unset($_SESSION['auth']);
 		unset($_SESSION['weixinID']);
+		unset($_SESSION['weixinName']);
 		gotoUrl('admin.php?controller=admin&method=login');
 	}
 

@@ -69,6 +69,8 @@ class loginModel{
 			$baseInfo = getConfigWithMMC($thisWeixinID);
 			if($baseInfo){
 				$weixinName = $baseInfo['CONFIG_VIP_NAME'];
+				$_SESSION['weixinName'] = $weixinName;
+
 			}
 			$info = $this->getEventListByWeiID($thisWeixinID);
 			if($info){

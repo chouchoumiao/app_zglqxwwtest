@@ -31,5 +31,4 @@ class commonModel
             'from_record' =>($page - 1) * $showCount  //计算开始的记录序号
         );
     }
-
 }

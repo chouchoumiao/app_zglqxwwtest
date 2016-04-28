@@ -14,12 +14,14 @@
 <!--列表开始-->
 <br/>
 <table class="table table-bordered table-hover">
-    <thead><tr>
-        <th>序号</th>
-        <th>用户名</th>
-        <th>注册时间</th>
-        <th>操作</th>
-    </tr></thead>
+    <thead>
+        <tr>
+            <th>序号</th>
+            <th>用户名</th>
+            <th>注册时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
 
     {if $retArr['class_list']}
     {foreach from=$retArr['class_list'] item = value}
@@ -51,7 +53,7 @@
 </div>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
 <script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="./Static/JS/multi.js?v=20160115"></script>
+<script type="text/javascript" src="./Static/JS/multi.js?v=20160116"></script>
 <script>
  $(document).ready(function() {
     var pagecount = {$retArr.count};
@@ -59,7 +61,7 @@
     var currentpage =  {$retArr.page};
     var showCount =  {$retArr.showCount};
 
-    multi(pagecount,pagesize,currentpage,showCount,"showUserInfo");
+    multi(pagecount,pagesize,currentpage,showCount,"admin","showUserInfo");
     $("#showPage ").val({$retArr.showCount}); //用于显示select的选中事件
 });
 

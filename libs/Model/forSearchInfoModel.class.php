@@ -6,9 +6,11 @@ class forSearchInfoModel extends commonModel{
 
 	private $_table;
 	private $weixinID;
+	private $weixinName;
 
 	public function __construct(){
 		$this->weixinID = $_SESSION['weixinID'];
+		$this->weixinName = $_SESSION['weixinName'];
 		$this->_table = 'Vip';
 	}
 
@@ -26,9 +28,9 @@ class forSearchInfoModel extends commonModel{
 				if($class_list[$i]['Vip_sex'] == 1){
 					$class_list[$i]['Vip_sex'] = '男';
 				}elseif($class_list[$i]['Vip_sex'] == 0){
-					$class_list[$i]['Vip_sex'] == '女';
+					$class_list[$i]['Vip_sex'] = '女';
 				}else{
-					$class_list[$i]['Vip_sex'] == '未知';
+					$class_list[$i]['Vip_sex'] = '未知';
 				}
 			}
 			$retArr = array(
@@ -37,6 +39,7 @@ class forSearchInfoModel extends commonModel{
 				'page' => $multiArr['page'],
 				'showCount' => $multiArr['showCount'],
 				'class_list' => $class_list,
+				'weixinName' => $this->weixinName
 			);
 			return $retArr;
 		}else{
@@ -54,7 +57,6 @@ class forSearchInfoModel extends commonModel{
 		$sql="select COUNT(*) from ".$this->_table." where WEIXIN_ID = $this->weixinID AND Vip_isDeleted = 0 ";
 		return $count = DB::findResult($sql);
 	}
-
 
 	/**
 	 * 根据分页信息取得相关会员信息

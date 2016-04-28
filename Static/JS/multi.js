@@ -2,7 +2,7 @@
  * Created by Administrator on 14-11-16.
  */
 //追加显示条数功能 20151030
- function multi(count,page_num,page,showCount,pageName){
+ function multi(count,page_num,page,showCount,controller,method){
     if($("#pagination")){
         var pagecount = count;  
         var pagesize = page_num;
@@ -33,26 +33,26 @@
             pagehtml+= '</select>    条</a></li>';
 
             if(currentpage>1){
-                pagehtml+= '<li><a href="admin.php?controller=admin&method='+pageName+'&page='+(currentpage-1)+'&showCount='+count+'">   上一页</a></li>';
+                pagehtml+= '<li><a href="admin.php?controller='+controller+'&method='+method+'&page='+(currentpage-1)+'&showCount='+count+'">   上一页</a></li>';
             }  
             if((currentpage - showCounts) > 0){
-                pagehtml+= '<li><a href="admin.php?controller=admin&method='+pageName+'&page='+(1)+'&showCount='+count+'">...'+(1)+'</a></li>';
+                pagehtml+= '<li><a href="admin.php?controller='+controller+'&method='+method+'&page='+(1)+'&showCount='+count+'">...'+(1)+'</a></li>';
             }
             for(var i=0;i<counts;i++){  
                 if(i>=(currentpage - showCounts) && i<(currentpage + showCounts)){  
                     if(i==currentpage-1){  
-                        pagehtml+= '<li class="active"><a href="admin.php?controller=admin&method='+pageName+'&page='+(i+1)+'&showCount='+count+'">'+(i+1)+'</a></li>';
+                        pagehtml+= '<li class="active"><a href="admin.php?controller='+controller+'&method='+method+'&page='+(i+1)+'&showCount='+count+'">'+(i+1)+'</a></li>';
                     }else{
-                        pagehtml+= '<li><a href="admin.php?controller=admin&method='+pageName+'&page='+(i+1)+'&showCount='+count+'">'+(i+1)+'</a></li>';
+                        pagehtml+= '<li><a href="admin.php?controller='+controller+'&method='+method+'&page='+(i+1)+'&showCount='+count+'">'+(i+1)+'</a></li>';
                     } 
                 }  
             }  
             if((currentpage + showCounts)<counts){
-                pagehtml+= '<li><a href="admin.php?controller=admin&method='+pageName+'&page='+(counts)+'&showCount='+count+'">...'+(counts)+'</a></li>';
+                pagehtml+= '<li><a href="admin.php?controller='+controller+'&method='+method+'&page='+(counts)+'&showCount='+count+'">...'+(counts)+'</a></li>';
                 //pagehtml+= '<li><a>...</a></li>';  
             }
             if(currentpage<counts){  
-                pagehtml+= '<li><a href="admin.php?controller=admin&method='+pageName+'&page='+(currentpage+1)+'&showCount='+count+'">下一页</a></li>';
+                pagehtml+= '<li><a href="admin.php?controller='+controller+'&method='+method+'&page='+(currentpage+1)+'&showCount='+count+'">下一页</a></li>';
             }
  
             //pagehtml+= '<li><a>共'+counts+'页</a></li>';  
@@ -70,7 +70,8 @@
     $('#turnToPageBtn').click(function(){
         var thisPage  =  $("#turnToPage").val();
         var thisCount  =  $("#showPage").val();
-		window.location.href='admin.php?controller=admin&method='+pageName+'&page='+thisPage+'&showCount='+thisCount;
+
+		window.location.href='admin.php?controller='+controller+'&method='+method+'&page='+thisPage+'&showCount='+thisCount;
 	}) 
      
  }
