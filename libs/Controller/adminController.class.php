@@ -1,10 +1,12 @@
 <?php
-class adminController{
+session_start();
+require_once('commonController.class.php');
+class adminController extends commonController{
 
 	public $auth;
 
 	public function __construct(){
-		session_start();
+
 		if(!(isset($_SESSION['auth']))&&(PC::$method!='login')){
 			gotoUrl(ROOTURL.'admin.php?controller=admin&method=login');
 		}else{
@@ -103,24 +105,11 @@ class adminController{
 
 	}
 
+	/**
+	 * 调用父类方法根据传入的控制器和方法进行删除数据
+	 */
 	public function delUserInfoByID(){
-
-		if(!isset($_POST["id"])){
-			$arr['success'] = 0;
-			$arr['msg'] = '无法取得id！';
-			echo json_encode($arr);
-			exit;
-		}
-		$id = intval(addslashes($_POST["id"]));
-
-		 if(M('admin')->delUserByID($id)){
-			 $arr['success'] = 1;
-			 $arr['msg'] = '删除成功！';
-		 }else{
-			 $arr['success'] = 0;
-			 $arr['msg'] = '删除失败';
-		 }
-		echo json_encode($arr);
+		echo json_encode(parent::delInfoByID('admin','delUserByID'));
 	}
 
 

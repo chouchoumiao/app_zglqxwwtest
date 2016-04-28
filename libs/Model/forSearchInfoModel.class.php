@@ -73,4 +73,20 @@ class forSearchInfoModel extends commonModel{
 				limit $arr[from_record],$arr[showCount]";
 		return DB::findAll($sql);
 	}
+
+	function delVipByID($id){
+
+		$nowtime=date("Y/m/d H:i:s",time());
+
+		$sql = "update Vip
+            set Vip_isDeleted = 1,
+                Vip_edittime = '$nowtime'
+            where Vip_id = $id
+            AND WEIXIN_ID = $this->weixinID";;
+		$errno = DB::query($sql);
+		if(!$errno){
+			return false;
+		}
+		return true;
+	}
 }

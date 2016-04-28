@@ -37,7 +37,7 @@
                 <td>{$value.Vip_tel}</td>
                 <td>{$value.Vip_integral}</td>
                 <td>{$value.Vip_createtime}</td>
-                <td><a href="javascript:void(0);" onclick = "isDelete({$value.id})">删除</a></td>
+                <td><a href="javascript:void(0);" onclick = "isDelete({$value.Vip_id},'forSearchInfo','delVipInfoByID')">删除</a></td>
             <tr>
         </tbody>
     {/foreach}
@@ -47,26 +47,16 @@
 </table>
 <ul class="pagination" id="pagination"></ul>
 </div>
+
+<!-- 传值给外部JS 用于分页  -->
+<input id = "pagecount" value={$retArr.count} type="hidden"/>
+<input id = "pagesize" value={$retArr.page_num} type="hidden"/>
+<input id = "currentpage" value={$retArr.page} type="hidden"/>
+<input id = "showCount" value={$retArr.showCount} type="hidden"/>
+<input id = "controller" value="forSearchInfo" type="hidden"/>
+<input id = "method" value="showVipInfoList" type="hidden"/>
+
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="./Static/JS/multi.js?v=20160118"></script>
-<script>
-    $(document).ready(function() {
-
-        var pagecount = {$retArr.count};
-        var pagesize = {$retArr.page_num};
-        var currentpage =  {$retArr.page};
-        var showCount =  {$retArr.showCount};
-
-        multi(pagecount,pagesize,currentpage,showCount,"forSearchInfo","showVipInfoList");
-        $("#showPage ").val({$retArr.showCount}); //用于显示select的选中事件
-    });
-    function isDelete(id){
-        if(confirm("确认删除吗？")){
-            location.href='searchVipInfo.php?action=del&id='+id;
-        }else{
-            return false;
-        }
-    }
-</script>
+<script type="text/javascript" src="./Static/JS/common.js?v=20160103"></script>
 </body>
 </html>
