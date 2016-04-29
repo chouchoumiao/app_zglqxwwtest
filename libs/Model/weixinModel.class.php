@@ -2,9 +2,11 @@
 class weixinModel{
 
 	private $weixinID;
+	private $weixinName;
 
 	function __construct(){
 		$this->weixinID = $_SESSION['weixinID'];
+		$this->weixinName = $_SESSION['weixinInfo']['CONFIG_VIP_NAME'];
 	}
 
 	/**
@@ -66,67 +68,87 @@ class weixinModel{
 		return DB::findOne($sql);
 
 	}
-	//function getBaseInfo(){
-    //
-	//	//取得该微信号的基础数据
-	//	$configLineData = $this->getWeixinBaseInfo();
-    //
-	//	//如果取得不存在 则初始化为 0,0,0,0,0,'积分'
-	//	if (!$configLineData) {
-	//		if (!$this->addWeixinBaseInfo()) {
-	//			return array(
-	//				"CONFIG_INTEGRALINSER" => 0,
-	//				"CONFIG_INTEGRAL_REFERRER_FOR_NEW_VIP" => 0,
-	//				"CONFIG_INTEGRALREFERRER" => 0,
-	//				"CONFIG_INTEGRALSETDAILY" => 0,
-	//				"CONFIG_DAILYPLUS" => 0,
-	//				"CONFIG_VIP_NAME" => '积分'
-	//			);
-	//		} else {
-	//			return array();
-	//		}
-	//	}
-	//	return $configLineData;
-	//}
-    //
-	///**
-	// * 取得该微信号的基础数据
-	// * @return mixed
-	// */
-	//private function getWeixinBaseInfo(){
-	//	$sql = "select CONFIG_INTEGRALINSERT,
-	//		   CONFIG_INTEGRAL_REFERRER_FOR_NEW_VIP,
-	//		   CONFIG_INTEGRALREFERRER,
-	//		   CONFIG_INTEGRALSETDAILY,
-	//		   CONFIG_DAILYPLUS,
-	//		   CONFIG_VIP_NAME from ConfigSet
-	//	where WEIXIN_ID = $this->weixinID";
-	//	return DB::findOne($sql);
-	//}
-    //
-	///**
-	// * 没有设置的情况下下默认初始化为 0,0,0,0,0,'积分'
-	// * @return mixed
-	// */
-	//private function addWeixinBaseInfo(){
-	//	$sql = "insert into ConfigSet
-	//					(WEIXIN_ID,
-	//					CONFIG_INTEGRALINSERT,
-	//					CONFIG_INTEGRAL_REFERRER_FOR_NEW_VIP,
-	//					CONFIG_INTEGRALREFERRER,
-	//					CONFIG_INTEGRALSETDAILY,
-	//					CONFIG_DAILYPLUS,
-	//					CONFIG_VIP_NAME
-	//					) values (
-	//					$this->weixinID,
-	//					0,
-	//					0,
-	//					0,
-	//					0,
-	//					0,
-	//					'积分'
-	//					)";
-	//	return DB::query($sql);
-	//}
+
+
+	/**
+	 * 更新会员积分相关信息
+	 * @return mixed
+	 */
+	function editVipBaseInfo(){
+
+		//如果存在新增会员增加积分数的设置，则更新数据库
+		if(!$this->updateIntegralNew()){
+			$arr['success'] = "NG";
+			$arr['msg'] = "更新【成为会员初次".$this->weixinName."数】失败！2秒后返回...";
+			return $arr;
+		}
+
+		//如果存在新增会员增加积分数的设置，则更新数据库
+		if(!$this->updateIntegralReferrerNew()){
+			$arr['success'] = "NG";
+			$arr['msg'] = "更新【有推荐人的情况下新会员获得额外的".$this->weixinName."数】失败！2秒后返回...";
+			return $arr;
+		}
+
+		//如果存在推荐本人积分数的设置，则更新数据库
+		if(!$this->updateReferrer()){
+			$arr['success'] = "NG";
+			$arr['msg'] = "更新【推荐人获得".$this->weixinName."】失败！2秒后返回...";
+			return $arr;
+		}
+
+		//更新后将最新的信息替换session
+		$_SESSION['weixinInfo'] = $this->getNewInfo();
+
+		$arr['success'] = "OK";
+		$arr['msg'] = "更新成功！2秒后返回...";
+		return $arr;
+	}
+
+
+	/**
+	 * 如果存在新增会员增加积分数的设置，则更新数据库
+	 * @return mixed
+	 */
+	private function updateIntegralNew(){
+		$integralNewInsert = addslashes($_POST["integralNewInsert"]); //成为会员初次积分
+		if($integralNewInsert){
+			$sql = "update ConfigSet
+					set CONFIG_INTEGRALINSERT = $integralNewInsert
+					where WEIXIN_ID = $this->weixinID";
+			return DB::query($sql);
+		}
+		return true;
+	}
+
+	/**
+	 * 如果存在有推荐人额外获得积分数的设置，则更新数据库
+	 * @return bool
+	 */
+	private function updateIntegralReferrerNew(){
+		$integralReferrerForNewVip = addslashes($_POST["integralReferrerForNewVip"]);//有推荐人的情况下新会员获得额外的积分数
+		if($integralReferrerForNewVip){
+			$sql = "update ConfigSet
+                set CONFIG_INTEGRAL_REFERRER_FOR_NEW_VIP = $integralReferrerForNewVip
+                where WEIXIN_ID = $this->weixinID";
+			return DB::query($sql);
+		}
+		return true;
+	}
+
+	/**
+	 * 如果存在推荐本人积分数的设置，则更新数据库
+	 * @return bool
+	 */
+	private function updateReferrer(){
+		$integralReferrer = addslashes($_POST["integralReferrer"]);//推荐人获得积分
+		if($integralReferrer){
+			$sql = "update ConfigSet
+                set CONFIG_INTEGRALREFERRER = $integralReferrer
+                where WEIXIN_ID = $this->weixinID";
+			return DB::query($sql);
+		}
+		return true;
+	}
 
 }

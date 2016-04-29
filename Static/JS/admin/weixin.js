@@ -108,4 +108,66 @@ $(function(){
                 }
         });
     });
+
+    $('#OKNewVipBtn').click(function(){
+
+        var integralNewInsert = $('#integralNewInsert').val();
+        var integralReferrerForNewVip = $('#integralReferrerForNewVip').val();
+        var integralReferrer = $('#integralReferrer').val();
+        var msg = "";
+
+        if((isNull(integralNewInsert))&&(isNull(integralReferrerForNewVip))&&(isNull(integralReferrer))){
+            msg = "三项不能都为空！";
+        }else if(!isNull(integralNewInsert)){
+            if(!isNumber(integralNewInsert)){
+                msg = "【新绑定会员设置】只能为数字";
+            }else  if(integralNewInsert<0 || integralNewInsert>999){
+                msg = "【新绑定会员设置】只能为1到999之间的整数";
+            }
+        }else if(!isNull(integralReferrerForNewVip)){
+            if(!isNumber(integralReferrerForNewVip)){
+                msg = "【存在推荐人时，新会员可获得额外的设置】只能为数字";
+            }else  if(integralReferrerForNewVip<0 || integralReferrerForNewVip>999){
+                msg = "【存在推荐人时，新会员可获得额外的设置】只能为1到999之间的整数";
+            }
+        }else if(!isNull(integralReferrer)){
+            if(!isNumber(integralReferrer)){
+                msg = "【存在推荐人时，推荐人可获得额外的设置】只能为数字";
+            }else  if(integralReferrer<0 || integralReferrer>999){
+                msg = "【存在推荐人时，推荐人可获得额外的设置】只能为1到999之间的整数";
+            }
+        }
+        if(msg != ""){
+            $('#myMsg').html(msg);
+            $('#myMsg').show();
+            setTimeout("$('#myMsg').hide()",2000);
+            return false;
+        }
+
+        $.ajax({
+            url:'./admin.php?controller=weixin&method=editVipBaseInfo'
+            ,type:"POST"
+            ,data:{
+                    "integralNewInsert":integralNewInsert,
+                    "integralReferrerForNewVip":integralReferrerForNewVip,
+                    "integralReferrer":integralReferrer
+                }
+            ,dataType: "json"
+            ,success:function(json){
+                if(json.success == "OK"){
+                    $('#myform').hide();
+                    $('#myOKMsg').html(json.msg);
+                    $('#myOKMsg').show();
+                }else{
+                    $('#myMsg').html(json.msg);
+                    $('#myMsg').show();
+                }
+                setTimeout(function(){
+                        window.location="./admin.php?controller=weixin&method=showVipBaseInfo";
+                    },2000);
+            }
+            ,error:function(xhr){alert('PHP页面有错误！'+xhr.responseText);}
+        });
+
+    });
 });

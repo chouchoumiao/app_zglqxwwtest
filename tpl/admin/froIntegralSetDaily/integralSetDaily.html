@@ -19,7 +19,7 @@
         <div id = myform>
             <div class="form-group">
                 <div class="input-group col-md-8 col-md-offset-2">
-                    <p><h3><span class="label label-info">本画面为每日签到时，能获得的{$weixinName}设置</span></h3></p></br>
+                    <p><h3><span class="label label-info">本画面为每日签到时，能获得的{$weixinInfo.CONFIG_VIP_NAME}设置</span></h3></p></br>
                 </div>
             </div>
             <div class="col-md-6 col-md-offset-3">
@@ -27,14 +27,14 @@
 
                     <div class="input-group">
                         <div class="input-group-addon">每日签到:</div>
-                        <input class="form-control" placeholder = "当前状态：{$weixinInfo.CONFIG_INTEGRALSETDAILY} {$weixinName}！" type="text" id = "integralSet">
+                        <input class="form-control" placeholder = "当前状态：{$weixinInfo.CONFIG_INTEGRALSETDAILY} {$weixinInfo.CONFIG_VIP_NAME}！" type="text" id = "integralSet">
                     </div>
 
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-addon">签到码签到:</div>
-                        <input class="form-control" placeholder = "当前状态：{$weixinInfo.CONFIG_DAILYPLUS}{$weixinName}！" type="text" id = "integralDailyCode">
+                        <input class="form-control" placeholder = "当前状态：{$weixinInfo.CONFIG_DAILYPLUS}{$weixinInfo.CONFIG_VIP_NAME}！" type="text" id = "integralDailyCode">
                     </div>
                 </div><br/>
                 <div class="form-group">

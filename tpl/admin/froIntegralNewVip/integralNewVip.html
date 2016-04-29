@@ -1,0 +1,62 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/flat-ui/2.2.2/css/flat-ui.min.css" rel="stylesheet">
+    <style>
+        .input-group-addon{
+            min-width: 350px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class = "row">
+        <div id = myform>
+            <div class="form-group">
+                <div class="input-group col-md-8 col-md-offset-2">
+                    <p><h3><span class="label label-info">本&nbsp画&nbsp面&nbsp为&nbsp新&nbsp会&nbsp员&nbsp绑&nbsp定&nbsp时，&nbsp各&nbsp种&nbsp初&nbsp始&nbsp化&nbsp设&nbsp置</span></h3></p>
+                    <span>注意：三项必须输入至少一项，不输入的项目表示不改变</span>
+                </div>
+            </div>
+            <br>
+            <div class="col-md-8 col-md-offset-2">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">新绑定会员可获得{$weixinInfo.CONFIG_VIP_NAME}数:</div>
+                        <input class="form-control" placeholder = "当前状态：{$weixinInfo.CONFIG_INTEGRALINSERT} {$weixinInfo.CONFIG_VIP_NAME}！" type="text" id = "integralNewInsert">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">存在推荐人时，新会员可获得额外{$weixinInfo.CONFIG_VIP_NAME}数:</div>
+                        <input class="form-control" placeholder = "当前状态：{$weixinInfo.CONFIG_INTEGRAL_REFERRER_FOR_NEW_VIP} {$weixinInfo.CONFIG_VIP_NAME}！" type="text" id = "integralReferrerForNewVip">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">存在推荐人时，推荐人可获得额外{$weixinInfo.CONFIG_VIP_NAME}数:</div>
+                        <input class="form-control" placeholder = "当前状态：{$weixinInfo.CONFIG_INTEGRALREFERRER} {$weixinInfo.CONFIG_VIP_NAME}！" type="text" id = "integralReferrer">
+                    </div>
+                </div><br/>
+                <div class="form-group">
+                    <button type="button" class="btn btn-info btn-block" id = "OKNewVipBtn">点击进行设置</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-8 col-md-offset-2">
+            <div id="myMsg" class="alert alert-warning" style = "display:none"></div>
+            <div id="myOKMsg" class="alert alert-success" style = "display:none"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="./Static/JS/CommJS_1.1.js"></script>
+<script type="text/javascript" src="./Static/JS/admin/weixin.js?v=20160101"></script>
+</body>
+</html>
