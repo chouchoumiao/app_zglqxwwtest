@@ -65,6 +65,7 @@ class adminController extends commonController{
 		unset($_SESSION['auth']);
 		unset($_SESSION['weixinID']);
 		unset($_SESSION['weixinName']);
+		unset($_SESSION['weixinInfo']);
 		gotoUrl('admin.php?controller=admin&method=login');
 	}
 

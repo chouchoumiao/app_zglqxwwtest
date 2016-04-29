@@ -70,6 +70,7 @@ class loginModel{
 			if($baseInfo){
 				$weixinName = $baseInfo['CONFIG_VIP_NAME'];
 				$_SESSION['weixinName'] = $weixinName;
+				$_SESSION['weixinInfo'] = $baseInfo;
 
 			}
 			$info = $this->getEventListByWeiID($thisWeixinID);

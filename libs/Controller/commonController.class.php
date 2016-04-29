@@ -16,6 +16,5 @@ class commonController{
 			$arr['msg'] = '删除失败';
 		}
 		return $arr;
-
 	}
 }

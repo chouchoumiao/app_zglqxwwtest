@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/flat-ui/2.2.2/css/flat-ui.min.css" rel="stylesheet">
+    <style>
+        .input-group-addon{
+            min-width: 110px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class = "row">
+        <div id = myform>
+            <div class="form-group">
+                <div class="input-group col-md-8 col-md-offset-2">
+                    <p><h3><span class="label label-info">本画面为每日签到时，能获得的{$weixinName}设置</span></h3></p></br>
+                </div>
+            </div>
+            <div class="col-md-6 col-md-offset-3">
+                <div class="form-group">
+
+                    <div class="input-group">
+                        <div class="input-group-addon">每日签到:</div>
+                        <input class="form-control" placeholder = "当前状态：{$weixinInfo.CONFIG_INTEGRALSETDAILY} {$weixinName}！" type="text" id = "integralSet">
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">签到码签到:</div>
+                        <input class="form-control" placeholder = "当前状态：{$weixinInfo.CONFIG_DAILYPLUS}{$weixinName}！" type="text" id = "integralDailyCode">
+                    </div>
+                </div><br/>
+                <div class="form-group">
+                    <button type="button" class="btn btn-info btn-block" id = "OKBtn">点击进行设置</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-8 col-md-offset-2">
+        <div id="myMsg" class="alert alert-warning" style = "display:none"></div>
+        <div id="myOKMsg" class="alert alert-success" style = "display:none"></div>
+    </div>
+</div>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="./Static/JS/CommJS_1.1.js"></script>
+<script type="text/javascript" src="./Static/JS/admin/weixin.js?v=20160101"></script>
+</body>
+</html>
