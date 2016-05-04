@@ -215,4 +215,90 @@ class forSearchInfoModel extends commonModel{
 		return $class_list;
 	}
 
+
+
+	function getQuestionOkCountList(){
+		$sql = "select * from question_master
+        where WEIXIN_ID = $this->weixinID
+        AND QUESTION_SATUS <> -1 ";
+		return DB::findAll($sql);
+	}
+
+
+	function getQuestionOk200(){
+
+		$masterID = addslashes($_POST["masterID"]);
+		if(!isset($masterID)){
+			$arr['success'] = 0;
+			$arr['msg'] = '无法获得参数值';
+			return $arr;
+		}
+
+		//取得前所有信息 并且根据答对题目数降序，用时升序排列
+		$sql = "select distinct answer_recorded_openid from answer_recorded
+        where WEIXIN_ID = $this->weixinID
+        AND question_master_ID = '$masterID'
+        AND status = 0
+        AND answer_recorded_OKCount = 10
+        order by answer_recorded_editTime ASC
+        limit 200";
+
+		$record =  DB::findAll($sql);
+
+		//取得前所有信息 并且根据答对题目数降序，用时升序排列
+		if(!$record){
+			$arr['success'] = 0;
+			$arr['msg'] = '未能取得数据'.$sql;
+			return $arr;
+		}
+
+
+		$vipIDStr = "";
+		$vipNameStr = "";
+		$vipTelStr = "";
+		$dataStr = "";
+
+		$recordCount = count($record);
+		for($i=0; $i<$recordCount; $i++){
+
+			$sql = "select Vip_id,Vip_name,Vip_tel from Vip
+            where  Vip_isDeleted = 0
+            AND Vip_openid = '".$record[$i]['answer_recorded_openid']."'";
+			$getVipData = DB::findOne($sql);
+
+			$sql = "select answer_recorded_editTime from answer_recorded
+            where WEIXIN_ID = $this->weixinID
+            AND question_master_ID = $masterID
+            AND status = 0
+            AND answer_recorded_OKCount = 10
+            AND answer_recorded_openid = '".$record[$i]['answer_recorded_openid']."'
+            order by answer_recorded_editTime ASC";
+			$OKCountData = DB::findAll($sql);
+
+			if($vipIDStr == ""){
+
+				$vipIDStr = $getVipData['Vip_id'];
+				$vipNameStr = $getVipData['Vip_name'];
+				$vipTelStr = $getVipData['Vip_tel'];
+
+				$dataStr = $OKCountData[0]['answer_recorded_editTime'];
+			}else{
+
+				$vipIDStr = $vipIDStr.",".$getVipData['Vip_id'];
+				$vipNameStr = $vipNameStr.",".$getVipData['Vip_name'];
+				$vipTelStr = $vipTelStr.",".$getVipData['Vip_tel'];
+
+				$dataStr = $dataStr.",".$OKCountData[0]['answer_recorded_editTime'];
+			}
+		}
+		$arr['success'] = "OK";
+		$arr['vipIDStr'] = $vipIDStr;
+		$arr['vipNameStr'] = $vipNameStr;
+		$arr['vipTelStr'] = $vipTelStr;
+		$arr['dataStr'] = $dataStr;
+
+		return $arr;
+
+	}
+
 }

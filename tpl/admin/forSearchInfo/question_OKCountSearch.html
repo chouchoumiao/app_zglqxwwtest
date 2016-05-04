@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/flat-ui/2.2.2/css/flat-ui.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div class="container">
+    <div class = "row">
+        <div id = myform>
+            <div class="col-md-8 col-md-offset-3">
+                <div class="form-group" id = "title">
+                    <h3><span class="label label-info"> &nbsp前 &nbsp200 &nbsp名 &nbsp全 &nbsp答 &nbsp对 &nbsp信 &nbsp息 &nbsp查 &nbsp询 &nbsp</span></h3>
+                </div><br/>
+            </div>
+            <div class="col-md-6 col-md-offset-3">
+                <div class="form-group">
+                    <div class="input-group">
+                        <div class="input-group-addon">主题:</div>
+                            <select class="form-control" id= "questionClassTitle">
+                                {foreach from = $retArr item = value }
+                                    <option value={$value.MASTER_ID}>{$value.QUESTION_TITLE}</option>
+                                {/foreach}
+                            </select>
+                    </div>
+                </div>
+                <br/>
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary btn-block" id = "BtnByClassAndID">查询</button>
+                </div>
+            </div>
+            <div id="createtable"></div>
+            <div id="loading"></div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="./Static/JS/admin/forSearchInfo.js?v=20160103"></script>
+</body>
+</html>
