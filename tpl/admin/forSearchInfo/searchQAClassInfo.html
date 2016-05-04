@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<HEAD>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+
+</HEAD>
+<body>
+
+<div class="container">
+<!--页面名称-->
+<h3>答题分类 一览</h3>
+<!--列表开始-->
+
+<table class="table table-bordered table-hover" >
+    <thead>
+        <tr>
+            <th>分类名称</th>
+            <th>创建时间</th>
+            <th>编辑(使用中的不能删除)</th>
+        </tr>
+    </thead>
+    {if $retArr['class_list']}
+        {foreach from=$retArr['class_list'] item = value}
+            <tbody>
+                <tr>
+                    <td>{$value.question_class_title}</td>
+                    <td>{$value.insertTime}</td>
+
+                    {if $value.stateList == 1}
+                        <td><a onclick='return false;' href='javascript:void(0));'>不能删除</a></td>
+                    {else}
+                        <td><a href="javascript:void(0);" onclick = "isDelete({$value.id},'forSearchInfo','delQAClassByID')">删除</a></td>
+                    {/if}
+                </tr>
+            </tbody>
+            {/foreach}
+    {else}
+        <tbody>
+            <tr>
+                <td colspan=12>无记录</td>
+            </tr>
+        </tbody>
+    {/if}
+</table>
+<ul class="pagination" id="pagination"></ul>
+</div>
+<!-- 传值给外部JS 用于分页  -->
+<input id = "pagecount" value={$retArr.count} type="hidden"/>
+<input id = "pagesize" value={$retArr.page_num} type="hidden"/>
+<input id = "currentpage" value={$retArr.page} type="hidden"/>
+<input id = "showCount" value={$retArr.showCount} type="hidden"/>
+<input id = "controller" value="forSearchInfo" type="hidden"/>
+<input id = "method" value="showQAClassInfoList" type="hidden"/>
+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="./Static/JS/common.js?v=20160103"></script>
+
+</body>
+</html>

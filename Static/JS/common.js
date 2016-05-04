@@ -25,7 +25,7 @@ $(document).ready(function() {
  * @param method
  */
 function multi(count,page_num,page,showCount,controller,method){
-    //alert(page)
+//    alert(count+':'+page_num+':'+page+':'+showCount+':'+controller+':'+method)
     if($("#pagination")){
         var pagecount = count;
         var pagesize = page_num;
@@ -93,6 +93,10 @@ function multi(count,page_num,page,showCount,controller,method){
     $('#turnToPageBtn').click(function(){
         var thisPage  =  $("#turnToPage").val();
         var thisCount  =  $("#showPage").val();
+
+        if(thisCount > count){
+            thisCount = count
+        }
 
         window.location.href='admin.php?controller='+controller+'&method='+method+'&page='+thisPage+'&showCount='+thisCount;
     })

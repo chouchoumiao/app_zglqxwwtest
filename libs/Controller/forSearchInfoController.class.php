@@ -14,7 +14,7 @@ class forSearchInfoController extends commonController{
 			'retArr'=>M('forSearchInfo')->getVipList(),
 			'weixinName' => $_SESSION['weixinName']
 		));
-		VIEW::display('admin/forSearchVipInfo/searchVipInfo.html');
+		VIEW::display('admin/forVip/searchVipInfo.html');
 	}
 
 	/**
@@ -29,6 +29,24 @@ class forSearchInfoController extends commonController{
 	 */
 	function getDailyCode(){
 		echo json_encode(M('forSearchInfo')->getDailyCodeWithWeixinID());
+	}
+
+
+	/**
+	 * 显示答题分类列表
+	 */
+	function showQAClassInfoList(){
+		VIEW::assign(array(
+			'retArr'=>M('forSearchInfo')->getQAClassInfoList()
+		));
+		VIEW::display('admin/forSearchInfo/searchQAClassInfo.html');
+	}
+
+	/**
+	 * 根据ID删除答题分类信息
+	 */
+	function delQAClassByID(){
+		echo json_encode(parent::delInfoByID('forSearchInfo','delQAClassByID'));
 	}
 
 }

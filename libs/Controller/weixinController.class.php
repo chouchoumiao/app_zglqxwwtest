@@ -7,7 +7,7 @@ class weixinController{
 		VIEW::assign( array(
 			'weixinInfo' =>$_SESSION['weixinInfo']
 		));
-		VIEW::display('admin/froIntegralSetDaily/integralSetDaily.html');
+		VIEW::display('admin/forWeixin/integralSetDaily.html');
 
 	}
 	function editBaseInfo(){
@@ -20,7 +20,7 @@ class weixinController{
 		VIEW::assign( array(
 			'weixinInfo' =>$_SESSION['weixinInfo']
 		));
-		VIEW::display('admin/froIntegralNewVip/integralNewVip.html');
+		VIEW::display('admin/forVip/integralNewVip.html');
 
 	}
 	function editVipBaseInfo(){

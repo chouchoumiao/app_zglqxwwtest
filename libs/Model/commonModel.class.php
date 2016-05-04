@@ -9,6 +9,30 @@
 class commonModel
 {
 
+    function getList($_table,$_whereCount,$_whereInfo){
+        //如果数据表里有数据
+
+        $count = $this->getCount($_table,$_whereCount);
+        if($count){
+
+            $multiArr = $this->getMulti();
+            //每页显示记录数
+            $class_list =  $this->getListWithMulti($_table,$multiArr,$_whereInfo);
+            return array(
+                'count' => $count,
+                'page' => $multiArr['page'],
+                'page_num' => $multiArr['showCount'],
+                'showCount' => $multiArr['showCount'],
+                'class_list' => $class_list
+            );
+        }else{
+            return array();
+        }
+    }
+
+    private function getCount($_table,$where){
+        return DB::findResult("select COUNT(*) from ".$_table." where ".$where);
+    }
     /**
      * 取得分页信息
      * private
@@ -30,5 +54,14 @@ class commonModel
             'showCount' =>$showCount,
             'from_record' =>($page - 1) * $showCount  //计算开始的记录序号
         );
+    }
+
+    private function getListWithMulti($_table,$arr,$whereInfo){
+
+        //获取符合条件的数据
+        $sql = "select * from ".$_table."
+				where ".$whereInfo."
+				limit $arr[from_record],$arr[showCount]";
+        return DB::findAll($sql);
     }
 }
