@@ -215,8 +215,11 @@ class forSearchInfoModel extends commonModel{
 		return $class_list;
 	}
 
-
-
+	/********************************************************************************************************/
+	/**
+	 * 获得答题的主题列表用于显示在下拉框中
+	 * @return mixed
+	 */
 	function getQuestionOkCountList(){
 		$sql = "select * from question_master
         where WEIXIN_ID = $this->weixinID
@@ -224,7 +227,11 @@ class forSearchInfoModel extends commonModel{
 		return DB::findAll($sql);
 	}
 
-
+	/**
+	 * 选择下拉框的的答题主题后点击查询按钮后
+	 * 取得答对10题的前200名
+	 * @return mixed
+	 */
 	function getQuestionOk200(){
 
 		$masterID = addslashes($_POST["masterID"]);
@@ -248,7 +255,7 @@ class forSearchInfoModel extends commonModel{
 		//取得前所有信息 并且根据答对题目数降序，用时升序排列
 		if(!$record){
 			$arr['success'] = 0;
-			$arr['msg'] = '未能取得数据'.$sql;
+			$arr['msg'] = '未能取得数据';
 			return $arr;
 		}
 
@@ -298,7 +305,79 @@ class forSearchInfoModel extends commonModel{
 		$arr['dataStr'] = $dataStr;
 
 		return $arr;
-
 	}
 
+	/**********************************************exchangeInfoSearch*************************************************/
+
+	/**
+	 * 取得兑换情况一览表
+	 * @return array
+	 */
+	function getExchangeListModel(){
+		$this->_table = 'bill';
+		$_whereCount = "WEIXIN_ID = $this->weixinID";
+
+		$count = parent::getCount($this->_table,$_whereCount);
+		if($count){
+
+			$multiArr = parent::getMulti();
+			//每页显示记录数
+			$arr =  $this->getExchangeAndVipInfo($multiArr);
+
+			if($arr){
+				for($i = 0;$i<count($arr);$i++) {
+					$status = $arr[$i]['Bill_Status'];
+					if ($status == 0) {
+						$arr[$i]['Bill_Status'] = "未兑换";
+					} else if (($status == 1)) {
+						$arr[$i]['Bill_Status'] = "已兑换";
+					} else {
+						$arr[$i]['Bill_Status'] = "未知";
+					}
+					$type = $arr[$i]['Bill_type'];
+					if ($type == "001") {
+						$arr[$i]['Bill_type'] = "积分商城";
+					} else if ($type == "002") {
+						$arr[$i]['Bill_type'] = "大转盘";
+					} else if ($type == "003") {
+						$arr[$i]['Bill_type'] = "刮刮卡";
+					} else if ($type == "004") {
+						$arr[$i]['Bill_type'] = "印章";
+					} else {
+						$arr[$i]['Bill_type'] = "未知";
+					}
+				}
+				return array(
+					'count' => $count,
+					'page' => $multiArr['page'],
+					'page_num' => $multiArr['showCount'],
+					'showCount' => $multiArr['showCount'],
+					'class_list' => $arr
+				);
+			}else{
+				return array();
+			}
+
+		}else{
+			return array();
+		}
+	}
+
+	/**
+	 * 私有方法
+	 * 联合查询 Vip 和 Bill表  中奖兑换情况取得
+	 * @param $multiArr
+	 * @return mixed
+	 */
+	private function getExchangeAndVipInfo($multiArr){
+		$sql = "select b.*, v.Vip_name,V.Vip_tel from bill b,Vip v
+			where b.WEIXIN_ID = $this->weixinID
+			AND v.Vip_openid = b.Bill_openid
+			order by b.Bill_insertDate desc,
+					 b.Bill_Status desc
+			limit $multiArr[from_record],$multiArr[showCount]";
+		return DB::findAll($sql);
+	}
+
+	/**********************************************exchangeInfoSearch*************************************************/
 }

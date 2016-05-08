@@ -17,20 +17,20 @@ class commonModel
 
             $multiArr = $this->getMulti();
             //每页显示记录数
-            $class_list =  $this->getListWithMulti($_table,$multiArr,$_whereInfo);
+            $infoList =  $this->getListWithMulti($_table,$multiArr,$_whereInfo);
             return array(
                 'count' => $count,
                 'page' => $multiArr['page'],
                 'page_num' => $multiArr['showCount'],
                 'showCount' => $multiArr['showCount'],
-                'class_list' => $class_list
+                'class_list' => $infoList
             );
         }else{
             return array();
         }
     }
 
-    private function getCount($_table,$where){
+    protected function getCount($_table,$where){
         return DB::findResult("select COUNT(*) from ".$_table." where ".$where);
     }
     /**

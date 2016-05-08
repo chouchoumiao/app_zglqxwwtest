@@ -56,6 +56,10 @@ class forSearchInfoController extends commonController{
 	/**********************************************取得全答对时间排行相关部分*******************************************/
 
 	/**********************************************取得全答对时间排行相关部分*******************************************/
+
+	/**
+	 * 获得答题的主题列表用于显示在下拉框中
+	 */
 	function showQuestionOkCountList(){
 		VIEW::assign(array(
 			'retArr'=>M('forSearchInfo')->getQuestionOkCountList()
@@ -64,7 +68,7 @@ class forSearchInfoController extends commonController{
 	}
 
 	/**
-	 * 获取答对10题的前200名信息
+	 * 选择下拉框的的答题主题后点击查询按钮后 获取答对10题的前200名信息
 	 */
 	function getQuestion200(){
 		echo json_encode(M('forSearchInfo')->getQuestionOk200());
@@ -72,4 +76,18 @@ class forSearchInfoController extends commonController{
 
 	/**********************************************取得全答对时间排行相关部分*******************************************/
 
+
+	/**********************************************取得兑奖信息相关部分***********************************************/
+
+	/**
+	 * 取得兑奖情况一览表
+	 */
+	function getExchangeListCon(){
+		VIEW::assign(array(
+			'retArr' => M('forSearchInfo')->getExchangeListModel()
+		));
+		VIEW::display('admin/forExchange/exchangeInfoSearch.html');
+	}
+
+	/**********************************************取得兑奖信息相关部分***********************************************/
 }

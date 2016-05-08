@@ -2,8 +2,6 @@ $(function(){
 
     //查询前200名全答对信息查询
     $('#BtnByClassAndID').click(function(){
-        //alert("AAA");
-        var i;
         var vipIDArr = [],
             vipNameArr = [],
             vipTelArr = [],
@@ -20,7 +18,7 @@ $(function(){
                 $("#loading").html("<div style = 'text-align:center'>正在查询,请稍后...</div>");
             }
             ,success:function(json){
-                alert(json.msg)
+                //alert(json)
                 $("#loading").empty();
                 $("#createtable").show();
                 if(json.success == "OK"){
@@ -48,6 +46,10 @@ $(function(){
                     }
                     tr.appendTo(table);
                     $("#createtable").append("</table>");
+                }else{
+                    $("#createtable").empty();
+                    $("#loading").html("<div style = 'text-align:center'>"+json.msg+"</div>");
+                    return;
                 }
             }
             ,error:function(xhr){alert('PHP页面有错误！'+xhr.responseText);}

@@ -94,8 +94,8 @@ function multi(count,page_num,page,showCount,controller,method){
         var thisPage  =  $("#turnToPage").val();
         var thisCount  =  $("#showPage").val();
 
-        if(thisCount > count){
-            thisCount = count
+        if(thisCount >= pagecount){
+            thisCount = pagecount
         }
 
         window.location.href='admin.php?controller='+controller+'&method='+method+'&page='+thisPage+'&showCount='+thisCount;
