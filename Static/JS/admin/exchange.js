@@ -1,18 +1,23 @@
 $(function(){
     $('#exchangSearchBtn').click(function(){
+
         var SNLast6 = $.trim($("#exchangeID").val());
         if((SNLast6 == '') || (SNLast6.length != 6)){
-            $('#myAlert').show();
-            setTimeout("$('#myAlert').hide()",2000);
+            $('#myMsg').html('兑换码不能为空，且为六位的字符！');
+            $('#myMsg').show();
+            setTimeout("$('#myMsg').hide()",3000);
         }else{
             $.ajax({
-                url:'../../../admin.php?controller=exchange&method=exchangeDoActionCon&action=exchange'//改为你的动态页
+                url:'../../../admin.php?controller=exchange&method=exchangeDoActionCon&action=searchBill'//改为你的动态页
                 ,type:"POST"
                 ,data:{"SNLast6":SNLast6}
                 ,dataType: "json"
+                ,beforeSend:function(XMLHttpRequest){
+                        $("#exchangSearchBtn").html('正在提交，请稍等！');
+                        $("#exchangSearchBtn").attr({"disabled":"disabled"});
+                    }
                 ,success:function(json){
 
-                    alert(json.success)
                     if(json.success == 1){
                         if(json.Bill_Status  == 1){
                             $("#AwardDiv").hide();
@@ -33,8 +38,11 @@ $(function(){
                         $("#main_result").show();
 
                     }else{
-                        alert(json.msg);
-
+                        $("#exchangSearchBtn").html('点击查询');
+                        $("#exchangSearchBtn").removeAttr("disabled");
+                        $('#myMsg').html(json.msg);
+                        $('#myMsg').show();
+                        setTimeout("$('#myMsg').hide()",3000);
                     }
                 }
                 ,error:function(xhr){alert('PHP页面有错误！'+xhr.responseText);}
@@ -47,21 +55,25 @@ $(function(){
             alert("请确认您的兑换码！");
         }else{
             $.ajax({
-                url:'../../admin.php?controller=exchange&method=exchangeDoActionCon&action=Awarded'//改为你的动态页
+                url:'../../../admin.php?controller=exchange&method=exchangeDoActionCon&action=Awarded'//改为你的动态页
                 ,type:"POST"
                 ,data:{"SNCode":SNCode}
                 ,dataType: "json"
+                ,beforeSend:function(XMLHttpRequest){
+                    $("#AwardBtn").html('正在提交，请稍等！');
+                    $("#AwardBtn").attr({"disabled":"disabled"});
+                }
                 ,success:function(json){
-                    if(json.success == 2){
-                        alert(json.msg);
-                        self.location='exchange.php';
-                    }else{
-                        alert(json.msg);
-                        self.location='exchange.php';
-                    }
+
+                    $('#main_result').hide();
+                    $('#myOKMsg').html(json.msg);
+                    $('#myOKMsg').show();
+                    setTimeout(function(){
+                        window.location = "exchange.html";
+                    },2000);
                 }
                 ,error:function(xhr){alert('PHP页面有错误！'+xhr.responseText);}
             });
         }
-    })
+    });
 });

@@ -1,5 +1,6 @@
 <?php
-
+error_reporting(E_ALL);
+ini_set('display_errors', '1');
 class exchangeController {
 
 	/**********************************************进行兑奖操作相关部分***********************************************/

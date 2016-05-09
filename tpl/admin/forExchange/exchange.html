@@ -8,135 +8,123 @@
 	<link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
 	<link href="//cdn.bootcss.com/flat-ui/2.2.2/css/flat-ui.min.css" rel="stylesheet">
 <title>兑奖画面</title>
+	<style>
+		.input-group-addon{
+			min-width: 140px;
+		}
+	</style>
 </head>
 <body>
 
-<div id = "main_search">
-<form action="?" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
-	<fieldset>
-	<div class="form-group">
-		<label class="col-sm-2 control-label"></label>
-		<div class="col-sm-3">
-		<p><h4><span class="label label-info">本画面为中奖信息查询画面，可根据兑换号（后六位）进行查询</span></h4></p></br>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-4 control-label" for="exchangeID">兑换码(后六位)：</label>
-		<div class="col-sm-5">
-			<input class="form-control" placeholder = "请输入兑换码后六位进行查询" type="text" name="exchangeID" id = "exchangeID"></br>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-4 control-label"></label>
-		<div class="col-sm-4 ">
-			<button type="button" class="btn btn-info btn-block"  id = "exchangSearchBtn">点击查询</button>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label"></label>
-		<div class="col-sm-8">
-			<div id="myAlert" class="alert alert-warning" style = "display:none;width: 550px;">
-				<a href="#" class="close" data-dismiss="alert">&times;</a>
-				<strong>请注意：</br></strong>兑换码不能为空，且为六位的字符！
+<div class="container">
+	<div class = "row">
+		<div id = "main_search">
+			<div class="col-md-6 col-md-offset-2">
+				<div class="form-group">
+						<h4><span class="label label-info">本画面为中奖信息查询画面，可根据兑换号（后六位）进行查询</span></h4></br>
+				</div>
+			</div>
+			<div class="col-md-6 col-md-offset-3">
+				<div class="form-group">
+					<div class="input-group">
+						<div class="input-group-addon">兑换码(后六位):</div>
+						<input class="form-control" placeholder = "请输入兑换码后六位进行查询" type="text" name="exchangeID" id = "exchangeID">
+					</div>
+				</div>
+				<br/>
+				<div class="form-group">
+					<button type="button" class="btn btn-info btn-block"  id = "exchangSearchBtn">点击查询</button>
+				</div>
 			</div>
 		</div>
-	</div>
-	</fieldset>
-</form>
-</div>
-<div id = "main_result" style = "display:none">
-<form action="?" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
-	<fieldset disabled>
-	<div class="form-group">
-		<label class="col-sm-4 control-label"></label>
-		<div class="col-sm-3">
-		<p><h3><span class="label label-info">兑换码对应的中奖信息：</span></h3></p></br>
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-4 control-label" for="billName">用户名：</label>
-		<div class="col-sm-3">
-			<input class="form-control" type="text" id = "billName">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-4 control-label" for="billTel">手机号：</label>
-		<div class="col-sm-3">
-			<input class="form-control" type="text" id = "billTel">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-4 control-label" for="billType">中奖类型：</label>
-		<div class="col-sm-3">
-			<input class="form-control" type="text" id = "BillType">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-4 control-label" for="billGoodsName">奖品内容：</label>
-		<div class="col-sm-3">
-			<input class="form-control" type="text" id = "billGoodsName">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-4 control-label" for="billGoodsDescription">奖品描述：</label>
-		<div class="col-sm-3">
-			<textarea class="form-control" type="text" id = "billGoodsDescription"></textarea>
-		</div>
-	</div>	
-	<div class="form-group">
-		<label class="col-sm-4 control-label" for="billSNCode">中奖SN码：</label>
-		<div class="col-sm-3">
-			<input class="form-control" type="text"id = "billSNCode">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-4 control-label" for="billTime">中奖时间：</label>
-		<div class="col-sm-3">
-			<input class="form-control" type="text" id = "billTime">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-4 control-label" for="EventsBeginDate">该活动开始日期：</label>
-		<div class="col-sm-3">
-			<input class="form-control" type="text" id = "EventsBeginDate">
-		</div>
-	</div>	<div class="form-group">
-		<label class="col-sm-4 control-label" for="EventsEndDate">该活动结束日期：</label>
-		<div class="col-sm-3">
-			<input class="form-control" type="text" id = "EventsEndDate">
-		</div>
-	</div>	<div class="form-group">
-		<label class="col-sm-4 control-label" for="EventsExpirationDate">领奖截止日期：</label>
-		<div class="col-sm-3">
-			<input class="form-control" type="text" id = "EventsExpirationDate">
-		</div>
-	</div>
-	<div class="form-group">
-		<label class="col-sm-2 control-label"></label>
-		<div class="col-sm-8">
-			<div id="NoResultAlert" class="alert alert-warning" style = "display:none;width: 550px;">
-				<a href="#" class="close" data-dismiss="alert">&times;</a>
-				<strong>请注意：</br></strong>输入的兑换码无对应的信息，请确认！
+		<div id = "main_result" style = "display:none">
+			<div class="col-md-6 col-md-offset-2">
+				<div class="form-group">
+						<h3><span class="label label-info">兑 &nbsp &nbsp &nbsp换 &nbsp &nbsp &nbsp码 &nbsp &nbsp &nbsp对 &nbsp &nbsp &nbsp应 &nbsp &nbsp &nbsp的 &nbsp &nbsp &nbsp中&nbsp &nbsp &nbsp奖&nbsp &nbsp &nbsp信 &nbsp &nbsp &nbsp息：</span></h3></br>
+				</div>
+			</div>
+			<div class="col-md-8 col-md-offset-2">
+				<fieldset disabled>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">用户名:</div>
+							<input class="form-control" type="text" id = "billName">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">手机号:</div>
+							<input class="form-control" type="text" id = "billTel">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">中奖类型:</div>
+							<input class="form-control" type="text" id = "BillType">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">奖品内容:</div>
+							<input class="form-control" type="text" id = "billGoodsName">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">奖品描述:</div>
+							<textarea class="form-control" type="text" id = "billGoodsDescription"></textarea>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">中奖SN码:</div>
+							<input class="form-control" type="text"id = "billSNCode">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">中奖时间:</div>
+							<input class="form-control" type="text" id = "billTime">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">该活动开始日期:</div>
+							<input class="form-control" type="text" id = "EventsBeginDate">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">该活动结束日期:</div>
+							<input class="form-control" type="text" id = "EventsEndDate">
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="input-group">
+							<div class="input-group-addon">领奖截止日期:</div>
+							<input class="form-control" type="text" id = "EventsExpirationDate">
+						</div>
+					</div>
+					<br/>
+				</fieldset>
+			</div>
+			<div class="col-md-8 col-md-offset-2">
+				<div class="form-group" id = "AwardDiv">
+					<button type="button" class="btn btn-success btn-block"  id = "AwardBtn">确认领奖</button>
+				</div>
+				<div class="form-group" id = "AwardNGDiv" style = "display:none">
+					<button type="button" class="btn btn-block" disabled>该商品已被兑换！</button>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="form-group" id = "AwardNGDiv" style = "display:none">
-		<label class="col-sm-4 control-label"></label>
-		<div class="col-sm-8">
-			<button type="button" class="btn btn-success">该商品已被兑换！</button>
+		<div class="col-md-8 col-md-offset-2">
+			<div id="myMsg" class="alert alert-warning" style = "display:none"></div>
+			<div id="myOKMsg" class="alert alert-success" style = "display:none"></div>
 		</div>
 	</div>
-	</fieldset>
-	<div class="form-group" id = "AwardDiv">
-		<label class="col-sm-4 control-label"></label>
-		<div class="col-sm-8">
-			<button type="button" class="btn btn-success"  id = "AwardBtn">确认领奖</button>
-		</div>
-	</div>
-</form>
 </div>
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="../../../Static/JS/Admin/exchange.js?v=2016012"></script>
+<script type="text/javascript" src="../../../Static/JS/Admin/exchange.js?v=2016031"></script>
 </body>
 
 </html>

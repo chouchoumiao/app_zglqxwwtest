@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="//cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    <br/>
+<h3>红包活动 管理<a href="hongbaoSet.php">新增信息>></a></h3>
+
+<table class="table table-bordered table-hover" >
+    <thead>
+        <tr>
+            <th>序号</th>
+            <th>主题</th>
+            <th>红包密码</th>
+            <th>创建时间</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    {if $retArr['class_list']}
+        {foreach from = $retArr['class_list'] item = value}
+             <tbody>
+                <tr><td>{$value.hongbao_id}</td>
+                    <td>{$value.hongbao_title}</td>
+                    <td>{$value.hongbao_password}</td>
+                    <td>{$value.hongbao_insertTime}</td>
+                    <td>{$value.hongbao_beginTime}</td>
+                    <td>{$value.hongbao_endTime}</td>
+                    <td>
+                        <a href='javascript:isDelete($value[hongbao_id]);'>删除</a>&nbsp
+                        <a href='hongbaoSet.php?action=edit&hongbaoID=$value[hongbao_id]&page=$page'>修改</a>
+                    </td>
+                <tr>
+             </tbody>
+        {/foreach}
+    {else}
+        <tbody><tr><td colspan=7>无记录</td></tr></tbody>
+    {/if}
+</table>
+<ul class="pagination" id="pagination"></ul>
+
+</div>
+<!-- 传值给外部JS 用于分页  -->
+<input id = "pagecount" value={$retArr.count} type="hidden"/>
+<input id = "pagesize" value={$retArr.page_num} type="hidden"/>
+<input id = "currentpage" value={$retArr.page} type="hidden"/>
+<input id = "showCount" value={$retArr.showCount} type="hidden"/>
+<input id = "controller" value="hongbao" type="hidden"/>
+<input id = "method" value="getHongbaoListCon" type="hidden"/>
+
+<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="./Static/JS/common.js?v=20160103"></script>
+
+</body>
+</html>
